@@ -3,6 +3,21 @@
         "math.h": "c",
         "sstream": "c",
         "random": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "bitset": "c",
+        "deque": "c",
+        "initializer_list": "c",
+        "queue": "c",
+        "unordered_map": "c",
+        "utility": "c",
+        "vector": "c",
+        "string_view": "c",
+        "ranges": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "chrono": "c"
     }
 }
