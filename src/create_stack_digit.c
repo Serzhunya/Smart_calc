@@ -35,9 +35,9 @@ double pop_digit(Stack_digit *stack) {
   if (isempty_digit(stack)) {
     exit(STACK_UNDERFLOW);
   }
-  stack->top--;
+  // stack->top--;
   stack->count--;
-  return stack->data[stack->top];
+  return stack->data[stack->top--];
 }
 
 double peek_digit(Stack_digit *stack) {

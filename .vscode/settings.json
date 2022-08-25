@@ -18,6 +18,9 @@
         "ranges": "c",
         "__bit_reference": "c",
         "algorithm": "c",
-        "chrono": "c"
+        "chrono": "c",
+        "locale": "c",
+        "__locale": "c",
+        "functional": "c"
     }
 }

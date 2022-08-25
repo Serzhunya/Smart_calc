@@ -31,20 +31,22 @@ void push_sign(Stack_sign *stack, char newitem) {
   stack->count++;
 }
 
-double pop_sign(Stack_sign *stack) {
+char pop_sign(Stack_sign *stack) {
   if (isempty_sign(stack)) {
-    exit(STACK_UNDERFLOW);
+    // exit(STACK_UNDERFLOW);
+    printf("STACK EMPTY");
+  } else {
+    stack->count--;
+    return stack->data[stack->top--];
   }
-  stack->top--;
-  stack->count--;
-  return stack->data[stack->top];
+  // stack->top--;
 }
 
-double peek_sign(Stack_sign *stack) {
+char peek_sign(Stack_sign *stack) {
   if (stack->top <= 0) {
-    exit(STACK_UNDERFLOW);
+    printf("STACK EMPTY");
   }
-  return stack->data[stack->top - 1];
+  return stack->data[stack->top];
 }
 void printStack_sign(Stack_sign *stack) {
   printf("Stack: ");
