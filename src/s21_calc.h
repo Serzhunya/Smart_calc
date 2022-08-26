@@ -38,4 +38,5 @@ int priority(char sign);
 char peek_sign(Stack_sign* stack);
 double get_operation(Stack_digit* digit_st, Stack_sign* sign_st);
 double create_calc(char* input, Stack_digit digit_st, Stack_sign sign_st);
+int isempty_digit(Stack_digit* stack);
 #endif  // SRC_S21_CALC_H_

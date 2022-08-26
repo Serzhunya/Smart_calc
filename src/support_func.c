@@ -16,31 +16,41 @@ char* create_lexem(char* input) {
 
 int distribution_res(char* res, Stack_digit* digit_st, Stack_sign* sign_st) {
   int err = 0;
-  if (*res >= 48 && *res <= 57) {
-    double num = atof(res);
-    printf("num:%f\n", num);
-    push_digit(digit_st, num);
+  if (*res == 41) {
+    err == 1;
   } else {
-    char sign = *res;
-    push_sign(sign_st, sign);
-    printf("sign:%c\n", sign);
+    if (*res >= 48 && *res <= 57) {
+      double num = atof(res);
+      printf("num:%f\n", num);
+      push_digit(digit_st, num);
+    } else {
+      char sign = *res;
+      push_sign(sign_st, sign);
+      printf("sign:%c\n", sign);
+    }
   }
   return err;
 }
 
 int check_operator(char* res, Stack_sign* sign_st) {
-  int err = 1;
+  int code = 1;
   if (*res >= 48 && *res <= 57) {
-    err = 0;
+    code = 0;
   } else {
-    char sign = peek_sign(sign_st);
-    if (priority(*res) <= priority(sign)) {
-      err = 1;
+    if (*res == 41) {  // если закр скобка
+      code = 2;
+    } else if (*res == 40) {  // если откр скобка
+      code = 3;
     } else {
-      err = 0;
+      char sign = peek_sign(sign_st);
+      if (priority(*res) <= priority(sign)) {
+        code = 1;
+      } else {
+        code = 0;
+      }
     }
   }
-  return err;
+  return code;
 }
 
 int priority(char sign) {
@@ -58,6 +68,7 @@ int priority(char sign) {
       prioritet = 3;
       break;
     case '(':
+    case ')':
       prioritet = 4;
       break;
   }
