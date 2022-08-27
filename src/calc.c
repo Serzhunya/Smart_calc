@@ -1,58 +1,34 @@
 #include "s21_calc.h"
 
 int main(void) {
-  Stack_digit digit_st;
   Stack_sign sign_st;
-  char* input = "12+(9+6+10-1)/2=";
-  double result_main = create_calc(input, digit_st, sign_st);
+  char* input = "1.2*(3.5+4-3.5*3)*10/(3+1+1)-20*2+4^3-5-2";
+  double result_main = create_calc(input, sign_st);
   printf("result_main: %f\n", result_main);
   return 0;
 }
 
-double create_calc(char* input, Stack_digit digit_st, Stack_sign sign_st) {
+double create_calc(char* input, Stack_sign sign_st) {
   double result_main = 0.0;
-  createEmptyStack_digit(&digit_st);
+  char pol_notation[255] = {'\0'};
   createEmptyStack_sign(&sign_st);
-  int open_brace = 0;
-  double result;
   for (int i = strlen(input); i > 0; i--) {
-    if (strlen(input) == 0) {  // int str_length = strlen(input);
+    if (strlen(input) == 0) {
       break;
     }
-    printf("\n");
-    char* res = create_lexem(input);
-    int check = check_operator(res, &sign_st);
-    // printf("open_brace%d", open_brace);
-    // printf("check%d", check);
-    if (check == 1) {
-      if (open_brace != 1) {
-        result = get_operation(&digit_st, &sign_st);
-        push_digit(&digit_st, result);
-      } else {
-        open_brace++;
-      }
-    } else if (check == 2) {
-      result = get_operation(&digit_st, &sign_st);
-      push_digit(&digit_st, result);
-      pop_sign(&sign_st);
-      open_brace = 0;
-    } else if (check == 3) {
-      open_brace = 1;
-    }
-    distribution_res(res, &digit_st, &sign_st);
-    input = input + strlen(res);
-    if (!(*res >= 48 && *res <= 57)) {
-      if (peek_sign(&sign_st) == '=' && isempty_digit(&digit_st)) {
-        pop_sign(&sign_st);
-        result_main = get_operation(&digit_st, &sign_st);
-      } else if (peek_sign(&sign_st) == '=' && !isempty_digit(&digit_st)) {
-        pop_sign(&sign_st);
-        result = get_operation(&digit_st, &sign_st);
-        result_main = result;
-      }
-    }
+    char* lexem = create_lexem(input);  // получение лексемы
+    distribution_lexem(lexem, &sign_st,
+                       pol_notation);  // распределение лексемы
+    input = input + strlen(lexem);  // передвигается указатель
   }
-  printStack_digit(&digit_st);
+  while (!isempty_sign(&sign_st)) {
+    char sign_in_stack = peek_sign(&sign_st);
+    char array_sign_in_stack[2] = {sign_in_stack, '\0'};
+    strcat(pol_notation, array_sign_in_stack);
+    pop_sign(&sign_st);
+  }
+  printf("pol_notation:%s\n", pol_notation);
   printStack_sign(&sign_st);
+
   return result_main;
 }

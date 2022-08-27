@@ -14,43 +14,44 @@ char* create_lexem(char* input) {
   return lexem;
 }
 
-int distribution_res(char* res, Stack_digit* digit_st, Stack_sign* sign_st) {
-  int err = 0;
-  if (*res == 41) {
-    err == 1;
-  } else {
-    if (*res >= 48 && *res <= 57) {
-      double num = atof(res);
-      printf("num:%f\n", num);
-      push_digit(digit_st, num);
-    } else {
-      char sign = *res;
-      push_sign(sign_st, sign);
-      printf("sign:%c\n", sign);
-    }
-  }
-  return err;
-}
+// 1.2 3.5 4 + 3.5 3 * - * 10 * 3 1 + 1 + / 20 - 4 3 ^ + 5 -
+// 1.2 3.5 4 + 3.5 3 * - * 10 * 3 1 + 1 + / 20 - 4 3 ^ 5-+
 
-int check_operator(char* res, Stack_sign* sign_st) {
-  int code = 1;
-  if (*res >= 48 && *res <= 57) {
-    code = 0;
-  } else {
-    if (*res == 41) {  // если закр скобка
-      code = 2;
-    } else if (*res == 40) {  // если откр скобка
-      code = 3;
-    } else {
-      char sign = peek_sign(sign_st);
-      if (priority(*res) <= priority(sign)) {
-        code = 1;
-      } else {
-        code = 0;
-      }
-    }
+int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
+  int err = 0;
+  char sign_cur = *lexem;
+  char sign_in_stack;
+  if (sign_cur >= 48 && sign_cur <= 57) {
+    strcat(pol_notation, lexem);
   }
-  return code;
+  if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
+      sign_cur == '*' || sign_cur == '^') {
+    if (!isempty_sign(sign_st)) {
+      sign_in_stack = peek_sign(sign_st);
+    }
+
+    if (priority(sign_cur) <= priority(sign_in_stack)) {
+      char array_sign_in_stack[2] = {sign_in_stack, '\0'};
+      strcat(pol_notation, array_sign_in_stack);
+      pop_sign(sign_st);
+    }
+    push_sign(sign_st, sign_cur);
+  }
+  if (sign_cur == '(') {
+    push_sign(sign_st, sign_cur);
+  }
+  if (sign_cur == ')') {
+    sign_in_stack = peek_sign(sign_st);
+    while (sign_in_stack != '(') {
+      char array_sign_in_stack[2] = {sign_in_stack, '\0'};
+      strcat(pol_notation, array_sign_in_stack);
+      pop_sign(sign_st);
+      sign_in_stack = peek_sign(sign_st);
+    }
+    pop_sign(sign_st);
+  }
+  printStack_sign(sign_st);
+  return err;
 }
 
 int priority(char sign) {
@@ -67,22 +68,24 @@ int priority(char sign) {
     case '/':
       prioritet = 3;
       break;
-    case '(':
-    case ')':
+      // case '(':
+      //   prioritet = 4;
+      //   break;
+    case '^':
       prioritet = 4;
       break;
   }
   return prioritet;
 }
 
-double get_operation(Stack_digit* digit_st, Stack_sign* sign_st) {
-  double result = 0.0;
-  double num1 = pop_digit(digit_st);
-  double num2 = pop_digit(digit_st);
-  char sign = pop_sign(sign_st);
-  result = math(num1, num2, sign);
-  return result;
-}
+// double get_operation(Stack_digit* digit_st, Stack_sign* sign_st) {
+//   double result = 0.0;
+//   double num1 = pop_digit(digit_st);
+//   double num2 = pop_digit(digit_st);
+//   char sign = pop_sign(sign_st);
+//   result = math(num1, num2, sign);
+//   return result;
+// }
 
 double math(double num1, double num2, char sign) {
   double result = 0.0;
