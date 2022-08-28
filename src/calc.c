@@ -49,6 +49,12 @@ char* create_output(char* pol_notation, Stack_sign* sign_st,
     }
     char* lexem = create_lexem(output);
     output = output + strlen(lexem);
+    /*
+    распределяет в стэк диджитов либо в стэк сайнов
+    1. если встретит первый сайн, берет из стэка диджитов два числа и кладет
+    результат в стэк диджитов
+    2. получает число в стэке диджитов это и будет ответ
+    */
     output = parsing_pol_notation(lexem, sign_st, digit_st);
     free(lexem);
   }
