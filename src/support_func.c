@@ -3,7 +3,7 @@
 char* create_lexem(char* input) {
   char* sign = "+-*/()^=";
   int index = strcspn(input, sign);
-  char* lexem = calloc(1, sizeof(1000));
+  char* lexem = calloc(255, sizeof(char));
   if (index == 0) {
     lexem[index] = input[index];
   } else {
@@ -14,26 +14,24 @@ char* create_lexem(char* input) {
   return lexem;
 }
 
-// 1.2 3.5 4 + 3.5 3 * - * 10 * 3 1 + 1 + / 20 - 4 3 ^ + 5 -
-// 1.2 3.5 4 + 3.5 3 * - * 10 * 3 1 + 1 + / 20 - 4 3 ^ 5-+
-
 int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
   int err = 0;
-  char sign_cur = *lexem;
   char sign_in_stack;
-  if (sign_cur >= 48 && sign_cur <= 57) {
+  if (*lexem >= 48 && *lexem <= 57) {
     strcat(pol_notation, lexem);
+    strcat(pol_notation, " ");
   }
+  char sign_cur = *lexem;
   if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
       sign_cur == '*' || sign_cur == '^') {
     if (!isempty_sign(sign_st)) {
       sign_in_stack = peek_sign(sign_st);
     }
-
-    if (priority(sign_cur) <= priority(sign_in_stack)) {
-      char array_sign_in_stack[2] = {sign_in_stack, '\0'};
+    while (priority(sign_cur) <= priority(sign_in_stack)) {
+      char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};
       strcat(pol_notation, array_sign_in_stack);
       pop_sign(sign_st);
+      sign_in_stack = peek_sign(sign_st);
     }
     push_sign(sign_st, sign_cur);
   }
@@ -43,14 +41,13 @@ int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
   if (sign_cur == ')') {
     sign_in_stack = peek_sign(sign_st);
     while (sign_in_stack != '(') {
-      char array_sign_in_stack[2] = {sign_in_stack, '\0'};
+      char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};
       strcat(pol_notation, array_sign_in_stack);
       pop_sign(sign_st);
       sign_in_stack = peek_sign(sign_st);
     }
     pop_sign(sign_st);
   }
-  printStack_sign(sign_st);
   return err;
 }
 
@@ -68,9 +65,6 @@ int priority(char sign) {
     case '/':
       prioritet = 3;
       break;
-      // case '(':
-      //   prioritet = 4;
-      //   break;
     case '^':
       prioritet = 4;
       break;
@@ -105,3 +99,6 @@ double math(double num1, double num2, char sign) {
   }
   return result;
 }
+
+char* parsing_pol_notation(char* lexem, Stack_sign* sign_st,
+                           Stack_digit* digit_st) {}

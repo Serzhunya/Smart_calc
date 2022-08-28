@@ -33,7 +33,7 @@ void push_sign(Stack_sign *stack, char newitem) {
 
 char pop_sign(Stack_sign *stack) {
   if (isempty_sign(stack)) {
-    // printf("STACK EMPTY");
+    printf("STACK EMPTY");
   } else {
     stack->count--;
     return stack->data[stack->top--];

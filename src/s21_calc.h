@@ -22,7 +22,7 @@ typedef struct Stack_t {
   int count;
 } Stack_sign;
 
-double create_calc(char* input, Stack_sign sign_st);
+char* create_polish_notation(char* input, Stack_sign sign_st);
 void createEmptyStack_sign(Stack_sign* stack);
 char* create_lexem(char* input);
 int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation);
@@ -35,4 +35,8 @@ int priority(char sign);
 char peek_sign(Stack_sign* stack);
 // double get_operation(Stack_digit* digit_st, Stack_sign* sign_st);
 int isempty_sign(Stack_sign* stack);
+char* create_output(char* pol_notation, Stack_sign* sign_st,
+                    Stack_digit* digit_st);
+char* parsing_pol_notation(char* lexem, Stack_sign* sign_st,
+                           Stack_digit* digit_st);
 #endif  // SRC_S21_CALC_H_

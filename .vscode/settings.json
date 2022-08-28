@@ -22,6 +22,9 @@
         "locale": "c",
         "__locale": "c",
         "functional": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "__string": "c",
+        "string": "c",
+        "*.tcc": "c"
     }
 }
