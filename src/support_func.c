@@ -1,7 +1,7 @@
 #include "s21_calc.h"
 
 char* create_lexem(char* input) {
-  char* sign = "+-*/() ^=";
+  char* sign = "+-*/() ^mcstainqlo=";
   int index = strcspn(input, sign);
   char* lexem = calloc(255, sizeof(char));
   if (index == 0) {
@@ -22,7 +22,7 @@ void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
   }
   char sign_cur = *lexem;
   if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
-      sign_cur == '*' || sign_cur == '^') {
+      sign_cur == '*' || sign_cur == '^' || sign_cur == 'm') {
     if (!isempty_sign(sign_st)) {
       sign_in_stack = peek_sign(sign_st);
     }
@@ -68,6 +68,7 @@ int priority(char sign) {
       break;
     case '*':
     case '/':
+    case 'm':
       prioritet = 3;
       break;
     case '^':
@@ -86,6 +87,14 @@ double get_operation(Stack_digit* digit_st, Stack_sign* sign_st) {
   return result;
 }
 
+double get_operation_unary(Stack_digit* digit_st, Stack_sign* sign_st) {
+  double result = 0.0;
+  double num1 = pop_digit(digit_st);
+  char sign = pop_sign(sign_st);
+  result = math_unary(num1, sign);
+  return result;
+}
+
 double math(double num1, double num2, char sign) {
   double result = 0.0;
   switch (sign) {
@@ -101,6 +110,43 @@ double math(double num1, double num2, char sign) {
     case '/':
       result = num2 / num1;
       break;
+    case 'm':
+      result = fmod(num2, num1);
+      break;
+  }
+  return result;
+}
+
+double math_unary(double num1, char sign) {
+  double result = 0.0;
+  switch (sign) {
+    case 's':
+      result = sin(num1);
+      break;
+    case 'c':
+      result = cos(num1);
+      break;
+    case 't':
+      result = tan(num1);
+      break;
+    case 'a':
+      result = acos(num1);
+      break;
+    case 'i':
+      result = asin(num1);
+      break;
+    case 'n':
+      result = atan(num1);
+      break;
+    case 'q':
+      result = sqrt(num1);
+      break;
+    case 'l':
+      result = ln(num1);
+      break;
+    case 'o':
+      result = log(num1);
+      break;
   }
   return result;
 }
@@ -113,9 +159,17 @@ void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
     push_digit(digit_st, num);
   }
   if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
-      sign_cur == '*' || sign_cur == '^') {
+      sign_cur == '*' || sign_cur == '^' || sign_cur == 'm') {
     push_sign(sign_st, sign_cur);
     double result = get_operation(digit_st, sign_st);
+    push_digit(digit_st, result);
+  }
+  if (sign_cur == 's' || sign_cur == 'c' || sign_cur == 't' ||  // sin cos tan
+      sign_cur == 'a' || sign_cur == 'i' ||
+      sign_cur == 'n' ||  // acos asin atan
+      sign_cur == 'q' || sign_cur == 'l' || sign_cur == 'o') {  // sqrt ln log
+    push_sign(sign_st, sign_cur);
+    double result = get_operation_unary(digit_st, sign_st);
     push_digit(digit_st, result);
   }
   // printStack_digit(digit_st);

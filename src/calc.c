@@ -3,7 +3,7 @@
 int main(void) {
   Stack_sign sign_st;
   Stack_digit digit_st;
-  char* input = "1.2*(3.5+2/(2+1))+(23-13)*345/3";
+  char* input = "27m7s10";
   char* polish_notation = create_polish_notation(input, sign_st);
   printf("polish_notation: %s\n", polish_notation);
   double output = create_output(polish_notation, sign_st, digit_st);
