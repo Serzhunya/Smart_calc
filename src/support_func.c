@@ -1,7 +1,7 @@
 #include "s21_calc.h"
 
 char* create_lexem(char* input) {
-  char* sign = "+-*/()^=";
+  char* sign = "+-*/() ^=";
   int index = strcspn(input, sign);
   char* lexem = calloc(255, sizeof(char));
   if (index == 0) {
@@ -14,8 +14,7 @@ char* create_lexem(char* input) {
   return lexem;
 }
 
-int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
-  int err = 0;
+void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
   char sign_in_stack;
   if (*lexem >= 48 && *lexem <= 57) {
     strcat(pol_notation, lexem);
@@ -31,6 +30,9 @@ int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
       char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};
       strcat(pol_notation, array_sign_in_stack);
       pop_sign(sign_st);
+      if (isempty_sign(sign_st)) {
+        break;
+      }
       sign_in_stack = peek_sign(sign_st);
     }
     push_sign(sign_st, sign_cur);
@@ -39,16 +41,19 @@ int distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
     push_sign(sign_st, sign_cur);
   }
   if (sign_cur == ')') {
-    sign_in_stack = peek_sign(sign_st);
+    if (!isempty_sign(sign_st)) {
+      sign_in_stack = peek_sign(sign_st);
+    }
     while (sign_in_stack != '(') {
       char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};
       strcat(pol_notation, array_sign_in_stack);
       pop_sign(sign_st);
-      sign_in_stack = peek_sign(sign_st);
+      if (!isempty_sign(sign_st)) {
+        sign_in_stack = peek_sign(sign_st);
+      }
     }
     pop_sign(sign_st);
   }
-  return err;
 }
 
 int priority(char sign) {
@@ -72,14 +77,14 @@ int priority(char sign) {
   return prioritet;
 }
 
-// double get_operation(Stack_digit* digit_st, Stack_sign* sign_st) {
-//   double result = 0.0;
-//   double num1 = pop_digit(digit_st);
-//   double num2 = pop_digit(digit_st);
-//   char sign = pop_sign(sign_st);
-//   result = math(num1, num2, sign);
-//   return result;
-// }
+double get_operation(Stack_digit* digit_st, Stack_sign* sign_st) {
+  double result = 0.0;
+  double num1 = pop_digit(digit_st);
+  double num2 = pop_digit(digit_st);
+  char sign = pop_sign(sign_st);
+  result = math(num1, num2, sign);
+  return result;
+}
 
 double math(double num1, double num2, char sign) {
   double result = 0.0;
@@ -100,5 +105,19 @@ double math(double num1, double num2, char sign) {
   return result;
 }
 
-char* parsing_pol_notation(char* lexem, Stack_sign* sign_st,
-                           Stack_digit* digit_st) {}
+void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
+                          Stack_digit* digit_st) {
+  char sign_cur = *lexem;
+  if (sign_cur >= 48 && sign_cur <= 57) {
+    double num = atof(lexem);
+    push_digit(digit_st, num);
+  }
+  if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
+      sign_cur == '*' || sign_cur == '^') {
+    push_sign(sign_st, sign_cur);
+    double result = get_operation(digit_st, sign_st);
+    push_digit(digit_st, result);
+  }
+  // printStack_digit(digit_st);
+  // printStack_sign(sign_st);
+}

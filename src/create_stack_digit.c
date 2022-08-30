@@ -24,6 +24,7 @@ int isempty_digit(Stack_digit *stack) {
 void push_digit(Stack_digit *stack, double newitem) {
   if (isfull_digit(stack)) {
     printf("STACK FULL");
+    exit(STACK_OVERFLOW);
   } else {
     stack->top++;
     stack->data[stack->top] = newitem;
@@ -35,7 +36,6 @@ double pop_digit(Stack_digit *stack) {
   if (isempty_digit(stack)) {
     exit(STACK_UNDERFLOW);
   }
-  // stack->top--;
   stack->count--;
   return stack->data[stack->top--];
 }
@@ -47,7 +47,7 @@ double peek_digit(Stack_digit *stack) {
   return stack->data[stack->top - 1];
 }
 void printStack_digit(Stack_digit *stack) {
-  printf("Stack: ");
+  printf("Stack_digit: ");
   for (int i = 0; i < stack->count; i++) {
     printf("%f ", stack->data[i]);
   }
