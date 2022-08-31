@@ -26,7 +26,7 @@ void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
     if (!isempty_sign(sign_st)) {
       sign_in_stack = peek_sign(sign_st);
     }
-    while (priority(sign_cur) <= priority(sign_in_stack)) {
+    while (priority(sign_cur) <= priority(sign_in_stack) && sign_cur != '^') {
       char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};
       strcat(pol_notation, array_sign_in_stack);
       pop_sign(sign_st);
@@ -36,6 +36,13 @@ void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
       sign_in_stack = peek_sign(sign_st);
     }
     push_sign(sign_st, sign_cur);
+  }
+
+  if (sign_cur == 's' || sign_cur == 'c' || sign_cur == 't' ||
+      sign_cur == 'a' || sign_cur == 'i' || sign_cur == 'n' ||
+      sign_cur == 'q' || sign_cur == 'l' || sign_cur == 'o') {
+    push_sign(sign_st, sign_cur);
+    push_sign(sign_st, '(');
   }
   if (sign_cur == '(') {
     push_sign(sign_st, sign_cur);
@@ -73,6 +80,17 @@ int priority(char sign) {
       break;
     case '^':
       prioritet = 4;
+      break;
+    case 's':
+    case 'c':
+    case 't':
+    case 'a':
+    case 'i':
+    case 'n':
+    case 'q':
+    case 'l':
+    case 'o':
+      prioritet = 5;
       break;
   }
   return prioritet;
@@ -113,6 +131,9 @@ double math(double num1, double num2, char sign) {
     case 'm':
       result = fmod(num2, num1);
       break;
+    case '^':
+      result = pow(num2, num1);
+      break;
   }
   return result;
 }
@@ -142,7 +163,7 @@ double math_unary(double num1, char sign) {
       result = sqrt(num1);
       break;
     case 'l':
-      result = ln(num1);
+      result = log10(num1);
       break;
     case 'o':
       result = log(num1);
