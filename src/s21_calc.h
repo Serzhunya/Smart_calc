@@ -1,4 +1,8 @@
 #ifndef SRC_S21_CALC_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define SRC_S21_CALC_H_
 
 #include <math.h>
@@ -45,3 +49,7 @@ double pop_digit(Stack_digit* stack);
 double get_operation_unary(Stack_digit* digit_st, Stack_sign* sign_st);
 double math_unary(double num1, char sign);
 #endif  // SRC_S21_CALC_H_
+
+#ifdef __cplusplus
+}
+#endif
