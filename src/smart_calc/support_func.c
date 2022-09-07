@@ -15,7 +15,7 @@ char* create_lexem(char* input) {
 }
 
 void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
-  char sign_in_stack;
+  char sign_in_stack = '\0';
   if (*lexem >= 48 && *lexem <= 57) {
     strcat(pol_notation, lexem);
     strcat(pol_notation, " ");

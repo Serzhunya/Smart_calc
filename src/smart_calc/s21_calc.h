@@ -1,9 +1,4 @@
 #ifndef SRC_S21_CALC_H_
-// #ifdef __cplusplus
-// extern "C" {
-// #endif
-
-// #define SRC_S21_CALC_H_
 
 #include <math.h>
 #include <stdio.h>
