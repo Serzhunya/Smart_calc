@@ -98,7 +98,7 @@ void MainWindow::operations()
 
 void MainWindow::math_operations()
 {
-    QPushButton *button = (QPushButton *)sender(); //  возвращает указатель на объект, пославший сигнал
+    QPushButton *button = (QPushButton *)sender();///  возвращает указатель на объект, пославший сигнал
     button->setChecked(true);
     ui->label->setText(ui->label->text() + button->text());
 }
