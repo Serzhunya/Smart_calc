@@ -112,10 +112,10 @@ void MainWindow::on_pushButton_clear_clicked()
     ui->label->setText("0");
 }
 
-//void MainWindow::on_pushButton_result_clicked()
-//{
+void MainWindow::on_pushButton_result_clicked()
+{
 
-//}
+}
 
 void MainWindow::braces_buttons()
 {

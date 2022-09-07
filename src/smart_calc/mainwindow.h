@@ -34,7 +34,7 @@ private slots:
     void math_operations();
 //    void equalButton();
     void on_pushButton_clear_clicked();
-//    void on_pushButton_result_clicked();
+    void on_pushButton_result_clicked();
     void braces_buttons();
     void trigeometry_operations();
 };
