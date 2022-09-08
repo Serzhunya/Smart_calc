@@ -193,6 +193,4 @@ void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
     double result = get_operation_unary(digit_st, sign_st);
     push_digit(digit_st, result);
   }
-  // printStack_digit(digit_st);
-  // printStack_sign(sign_st);
 }

@@ -373,7 +373,7 @@ public:
         pushButton_percent->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
         pushButton_plus_minus->setText(QCoreApplication::translate("MainWindow", "+/-", nullptr));
         pushButton_clear->setText(QCoreApplication::translate("MainWindow", "AC", nullptr));
-        pushButton_div->setText(QCoreApplication::translate("MainWindow", ":", nullptr));
+        pushButton_div->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
         pushButton_mod->setText(QCoreApplication::translate("MainWindow", "\342\210\232", nullptr));
         pushButton_cos->setText(QCoreApplication::translate("MainWindow", "cos", nullptr));
         pushButton_sin->setText(QCoreApplication::translate("MainWindow", "sin", nullptr));

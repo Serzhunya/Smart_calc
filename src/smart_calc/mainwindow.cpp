@@ -1,8 +1,9 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+Stack_sign sign_st;
+Stack_digit digit_st;
 
-//    QString input = 0;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,25 +50,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::digits_numbers()
-//{
-//    QPushButton *button = (QPushButton*)sender();
-//    double numbers;
-//    QString new_label;
-////    QString text = ui->label->text();
-////    std::string s(".+-*/");
-////    std::string str = text.toStdString();
-//    if (button->text() == "0" && ui->label->text().contains('.')) {
-//        new_label = ui->label->text() + button->text();
-//    } else {
-//        numbers = (ui->label->text() + button->text()).toDouble();
-//        new_label = QString::number(numbers, 'g', 16);
-//    }
-
-//        ui->label->setText(new_label);
-////    input += new_label;
-//}
-
 void MainWindow::digits_numbers()
 {
     QPushButton *button = (QPushButton*)(sender());
@@ -77,17 +59,13 @@ void MainWindow::digits_numbers()
     } else {
         new_label = button->text();
     }
-
-//        new_label = QString::(new_label, 'g', 15);
     ui->label->setText(new_label);
-//    input = new_label;
 }
 
 void MainWindow::on_pushButton_dot_clicked()
 {
     if(!ui->label->text().contains('.')) {
         ui->label->setText(ui->label->text() + ".");
-//           input += ".";
     }
 }
 
@@ -108,15 +86,13 @@ void MainWindow::operations()
         new_label = QString::number(numbers, 'g', 15); // преобразование в строку
         ui->label->setText(new_label);
     }
-//    input += new_label;
 }
 
 void MainWindow::math_operations()
 {
-    QPushButton *button = (QPushButton *)sender();///  возвращает указатель на объект, пославший сигнал
+    QPushButton *button = (QPushButton *)sender(); //  возвращает указатель на объект, пославший сигнал
     button->setChecked(true);
     ui->label->setText(ui->label->text() + button->text());
-//     input += button->text();
 }
 
 void MainWindow::on_pushButton_clear_clicked()
@@ -127,16 +103,18 @@ void MainWindow::on_pushButton_clear_clicked()
     ui->pushButton_sub->setCheckable(false);
     ui->label->setText("0");
     ui->label_2->setText("0");
-//    input = "";
 }
 
 void MainWindow::on_pushButton_result_clicked()
 {
-QString text = ui->label->text();
- /*   QByteArray str_bit =  input.toLocal8Bit();*/ // Преобразование QString в StringQByteArray
-//    char * input_str = str_bit.data();
-//    ui->label->setText(0);
+    QString text = ui->label->text();
     ui->label_2->setText(text);
+    QByteArray str_bit =  text.toLocal8Bit(); // Преобразование QString в StringQByteArray
+    char *input_str = str_bit.data();
+    char* polish_notation = create_polish_notation(input_str, sign_st);
+    double output = create_output(polish_notation, sign_st, digit_st);
+    QString str_output = QString::number(output);
+    ui->label->setText(str_output);
 }
 
 void MainWindow::braces_buttons()
@@ -144,14 +122,11 @@ void MainWindow::braces_buttons()
     QPushButton *button = (QPushButton *)sender();
     button->setChecked(true);
     ui->label->setText(ui->label->text() + button->text());
-//     input += button->text();
 }
 
 void MainWindow::trigeometry_operations()
 {
     QPushButton *button = (QPushButton *)sender(); //  возвращает указатель на объект, пославший сигнал
     button->setChecked(true);
-    ui->label->setText(button->text() + '(');
-//    input += (button->text() + '(');
+    ui->label->setText(ui->label->text()  + button->text() + '(');
 }
-
