@@ -28,7 +28,6 @@ private:
 
 private slots:
     void digits_numbers();
-
     void on_pushButton_dot_clicked();
     void operations();
     void math_operations();

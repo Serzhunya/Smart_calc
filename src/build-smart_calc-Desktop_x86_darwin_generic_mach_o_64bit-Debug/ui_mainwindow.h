@@ -55,6 +55,7 @@ public:
     QPushButton *pushButton_closed_brace;
     QPushButton *pushButton_opened_brace;
     QPushButton *pushButton_scale;
+    QLabel *label_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -65,7 +66,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(30, 40, 571, 81));
+        label->setGeometry(QRect(30, 10, 551, 51));
         QFont font;
         font.setPointSize(22);
         label->setFont(font);
@@ -91,6 +92,7 @@ public:
 "}"));
         pushButton_9 = new QPushButton(centralwidget);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
+        pushButton_9->setEnabled(true);
         pushButton_9->setGeometry(QRect(190, 240, 80, 80));
         pushButton_9->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	font: 20pt \".AppleSystemUIFont\";\n"
@@ -338,6 +340,10 @@ public:
         pushButton_scale->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
 "	background-color: rgb(219, 110, 208);\n"
 "	border: 0.1px solid grey;"));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(30, 70, 541, 51));
+        label_2->setFont(font);
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -381,6 +387,7 @@ public:
         pushButton_closed_brace->setText(QCoreApplication::translate("MainWindow", ")", nullptr));
         pushButton_opened_brace->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
     } // retranslateUi
 
 };
