@@ -57,13 +57,15 @@ SOURCES       = ../smart_calc/calc.c \
 		../smart_calc/create_stack_sign.c \
 		../smart_calc/main.cpp \
 		../smart_calc/mainwindow.cpp \
-		../smart_calc/support_func.c moc_mainwindow.cpp
+		../smart_calc/support_func.c \
+		../smart_calc/validation.c moc_mainwindow.cpp
 OBJECTS       = calc.o \
 		create_stack_digit.o \
 		create_stack_sign.o \
 		main.o \
 		mainwindow.o \
 		support_func.o \
+		validation.o \
 		moc_mainwindow.o
 DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
@@ -326,7 +328,8 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		../smart_calc/create_stack_sign.c \
 		../smart_calc/main.cpp \
 		../smart_calc/mainwindow.cpp \
-		../smart_calc/support_func.c
+		../smart_calc/support_func.c \
+		../smart_calc/validation.c
 QMAKE_TARGET  = smart_calc
 DESTDIR       = 
 TARGET        = smart_calc.app/Contents/MacOS/smart_calc
@@ -901,7 +904,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../smart_calc/mainwindow.h ../smart_calc/s21_calc.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../smart_calc/calc.c ../smart_calc/create_stack_digit.c ../smart_calc/create_stack_sign.c ../smart_calc/main.cpp ../smart_calc/mainwindow.cpp ../smart_calc/support_func.c $(DISTDIR)/
+	$(COPY_FILE) --parents ../smart_calc/calc.c ../smart_calc/create_stack_digit.c ../smart_calc/create_stack_sign.c ../smart_calc/main.cpp ../smart_calc/mainwindow.cpp ../smart_calc/support_func.c ../smart_calc/validation.c $(DISTDIR)/
 	$(COPY_FILE) --parents ../smart_calc/mainwindow.ui $(DISTDIR)/
 
 
@@ -941,6 +944,9 @@ compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../smart_calc/mainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
+		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../smart_calc/s21_calc.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
 	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/sandslas/Documents/C7_SmartCalc_v1.0-0/src/build-smart_calc-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/sandslas/Documents/C7_SmartCalc_v1.0-0/src/smart_calc -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../smart_calc/mainwindow.h -o moc_mainwindow.cpp
@@ -978,16 +984,25 @@ create_stack_sign.o: ../smart_calc/create_stack_sign.c ../smart_calc/s21_calc.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o create_stack_sign.o ../smart_calc/create_stack_sign.c
 
 main.o: ../smart_calc/main.cpp ../smart_calc/mainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
+		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../smart_calc/s21_calc.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../smart_calc/main.cpp
 
 mainwindow.o: ../smart_calc/mainwindow.cpp ../smart_calc/mainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
+		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../smart_calc/s21_calc.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../smart_calc/mainwindow.cpp
 
 support_func.o: ../smart_calc/support_func.c ../smart_calc/s21_calc.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o support_func.o ../smart_calc/support_func.c
+
+validation.o: ../smart_calc/validation.c ../smart_calc/s21_calc.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o validation.o ../smart_calc/validation.c
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

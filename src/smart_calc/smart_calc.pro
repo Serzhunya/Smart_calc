@@ -15,7 +15,8 @@ SOURCES += \
     create_stack_sign.c \
     main.cpp \
     mainwindow.cpp \
-    support_func.c
+    support_func.c \
+    validation.c
 
 HEADERS += \
     mainwindow.h \
