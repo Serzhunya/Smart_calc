@@ -4,7 +4,7 @@
 
 Stack_sign sign_st;
 Stack_digit digit_st;
-// QString check_dot;
+QString check_dot;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -67,7 +67,7 @@ void MainWindow::digits_numbers() {
   QString new_label;
   QString new_label_2;
   // QString check_dot;
-  // check_dot += button->text();
+  check_dot += button->text();
   if (ui->label->text() != "0") {
     new_label = ui->label->text() + button->text();
   } else {
@@ -80,18 +80,21 @@ void MainWindow::digits_numbers() {
     new_label_2 = button->text();
   }
   ui->label_2->setText(new_label_2);
+  ui->label_3->setText(check_dot);
 }
 
 void MainWindow::on_pushButton_dot_clicked() {
-  if (!ui->label_2->text().contains('.')) {
+  if (!check_dot.contains('.')) {
     ui->label->setText(ui->label->text() + ".");
+    // ui->label_3->setText(ui->label_3->text() + ".");
   }
-  if (!ui->label_2->text().contains('.')) {
+  if (!check_dot.contains('.')) {
     ui->label_2->setText(ui->label_2->text() + ".");
   }
 }
 
 void MainWindow::operations() {
+  check_dot = 0;
   QPushButton *button = (QPushButton *)sender();
   double numbers;
   double numbers_2;
@@ -148,6 +151,7 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->pushButton_sub->setCheckable(false);
   ui->label->setText("0");
   ui->label_2->setText("0");
+  ui->label_3->setText("0");
 }
 
 void MainWindow::on_pushButton_result_clicked() {
