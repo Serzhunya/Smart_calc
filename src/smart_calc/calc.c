@@ -1,8 +1,8 @@
 #include "s21_calc.h"
 
-//int main(void) {
-//  Stack_sign sign_st;
-//  Stack_digit digit_st;
+// int main(void) {
+//   Stack_sign sign_st;
+//   Stack_digit digit_st;
 
 //  char* input = "2^3^2+34/2+s1+2)";
 //  char* polish_notation = create_polish_notation(input, sign_st);
@@ -11,16 +11,25 @@
 //  printf("output: %.7f\n", output);
 //  free(polish_notation);
 //  return 0;
-//}
+// }
 
 char* create_polish_notation(char* input, Stack_sign sign_st) {
   char* pol_notation = calloc(255, sizeof(char));
+  char minus;
   createEmptyStack_sign(&sign_st);
+  if (input[0] == '-') {
+    minus = input[0];
+    input = input + 1;
+  }
   for (int i = strlen(input); i >= 0; i--) {
     if (strlen(input) == 0) {
       break;
     }
     char* lexem = create_lexem(input);
+    // if (minus) {
+    //   memmove(lexem + 1, lexem, strlen(lexem));
+    //   lexem[0] = '-';
+    // }
     input = input + strlen(lexem);
     distribution_lexem(lexem, &sign_st, pol_notation);
     free(lexem);

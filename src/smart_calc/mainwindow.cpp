@@ -4,6 +4,7 @@
 
 Stack_sign sign_st;
 Stack_digit digit_st;
+// QString check_dot;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -26,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
   connect(ui->pushButton_mul, SIGNAL(clicked()), this, SLOT(math_operations()));
   connect(ui->pushButton_sum, SIGNAL(clicked()), this, SLOT(math_operations()));
   connect(ui->pushButton_sub, SIGNAL(clicked()), this, SLOT(math_operations()));
+  connect(ui->pushButton_mod, SIGNAL(clicked()), this, SLOT(math_operations()));
+  connect(ui->pushButton_scale, SIGNAL(clicked()), this,
+          SLOT(math_operations()));
   connect(ui->pushButton_opened_brace, SIGNAL(clicked()), this,
           SLOT(braces_buttons()));
   connect(ui->pushButton_closed_brace, SIGNAL(clicked()), this,
@@ -62,6 +66,8 @@ void MainWindow::digits_numbers() {
   QPushButton *button = (QPushButton *)(sender());
   QString new_label;
   QString new_label_2;
+  // QString check_dot;
+  // check_dot += button->text();
   if (ui->label->text() != "0") {
     new_label = ui->label->text() + button->text();
   } else {
@@ -77,7 +83,7 @@ void MainWindow::digits_numbers() {
 }
 
 void MainWindow::on_pushButton_dot_clicked() {
-  if (!ui->label->text().contains('.')) {
+  if (!ui->label_2->text().contains('.')) {
     ui->label->setText(ui->label->text() + ".");
   }
   if (!ui->label_2->text().contains('.')) {
@@ -124,10 +130,14 @@ void MainWindow::math_operations() {
   } else {
     ui->label->setText(button->text());
   }
-  if (ui->label_2->text() != "0") {
-    ui->label_2->setText(ui->label_2->text() + button->text());
+  if (button->text() == "mod") {
+    ui->label_2->setText(ui->label_2->text() + "m");
   } else {
-    ui->label_2->setText(button->text());
+    if (ui->label_2->text() != "0") {
+      ui->label_2->setText(ui->label_2->text() + button->text());
+    } else {
+      ui->label_2->setText(button->text());
+    }
   }
 }
 
@@ -145,7 +155,6 @@ void MainWindow::on_pushButton_result_clicked() {
   // ui->label_2->setText(text);
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
-
   int code = validation(input_str);
   if (code) {
     ui->label->setText("Error");

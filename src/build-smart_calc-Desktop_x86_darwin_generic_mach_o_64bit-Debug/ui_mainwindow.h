@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -56,12 +57,13 @@ public:
     QPushButton *pushButton_opened_brace;
     QPushButton *pushButton_scale;
     QLabel *label_2;
+    QLineEdit *lineEdit;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(640, 589);
+        MainWindow->resize(1229, 588);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -344,6 +346,9 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(30, 70, 541, 51));
         label_2->setFont(font);
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(650, 10, 570, 570));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -374,7 +379,7 @@ public:
         pushButton_plus_minus->setText(QCoreApplication::translate("MainWindow", "+/-", nullptr));
         pushButton_clear->setText(QCoreApplication::translate("MainWindow", "AC", nullptr));
         pushButton_div->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
-        pushButton_mod->setText(QCoreApplication::translate("MainWindow", "\342\210\232", nullptr));
+        pushButton_mod->setText(QCoreApplication::translate("MainWindow", "mod", nullptr));
         pushButton_cos->setText(QCoreApplication::translate("MainWindow", "cos", nullptr));
         pushButton_sin->setText(QCoreApplication::translate("MainWindow", "sin", nullptr));
         pushButton_tan->setText(QCoreApplication::translate("MainWindow", "tan", nullptr));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>589</height>
+    <width>1229</width>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -460,7 +460,7 @@ color: white;
 	border: 0.1px solid grey;</string>
     </property>
     <property name="text">
-     <string>√</string>
+     <string>mod</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_cos">
@@ -704,6 +704,16 @@ color: rgb(255, 0, 200);
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>570</width>
+      <height>570</height>
+     </rect>
     </property>
    </widget>
   </widget>
