@@ -716,19 +716,6 @@ color: rgb(255, 0, 200);
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>60</y>
-      <width>181</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
   </widget>
  </widget>
  <resources/>

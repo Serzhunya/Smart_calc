@@ -66,7 +66,6 @@ void MainWindow::digits_numbers() {
   QPushButton *button = (QPushButton *)(sender());
   QString new_label;
   QString new_label_2;
-  // QString check_dot;
   check_dot += button->text();
   if (ui->label->text() != "0") {
     new_label = ui->label->text() + button->text();
@@ -80,21 +79,20 @@ void MainWindow::digits_numbers() {
     new_label_2 = button->text();
   }
   ui->label_2->setText(new_label_2);
-  ui->label_3->setText(check_dot);
 }
 
 void MainWindow::on_pushButton_dot_clicked() {
-  if (!check_dot.contains('.')) {
+  QPushButton *button = (QPushButton *)(sender());
+  if (!check_dot.contains(',')) {
     ui->label->setText(ui->label->text() + ".");
-    // ui->label_3->setText(ui->label_3->text() + ".");
   }
-  if (!check_dot.contains('.')) {
+  if (!check_dot.contains(',')) {
     ui->label_2->setText(ui->label_2->text() + ".");
   }
+  check_dot += button->text();
 }
 
 void MainWindow::operations() {
-  check_dot = 0;
   QPushButton *button = (QPushButton *)sender();
   double numbers;
   double numbers_2;
@@ -125,6 +123,7 @@ void MainWindow::operations() {
 }
 
 void MainWindow::math_operations() {
+  check_dot = 0;
   QPushButton *button = (QPushButton *)
       sender();  //  возвращает указатель на объект, пославший сигнал
   button->setChecked(true);
@@ -151,7 +150,7 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->pushButton_sub->setCheckable(false);
   ui->label->setText("0");
   ui->label_2->setText("0");
-  ui->label_3->setText("0");
+  check_dot = 0;
 }
 
 void MainWindow::on_pushButton_result_clicked() {
@@ -173,6 +172,7 @@ void MainWindow::on_pushButton_result_clicked() {
 }
 
 void MainWindow::braces_buttons() {
+  check_dot = 0;
   QPushButton *button = (QPushButton *)sender();
   button->setChecked(true);
   if (ui->label->text() != "0") {
@@ -188,6 +188,7 @@ void MainWindow::braces_buttons() {
 }
 
 void MainWindow::trigeometry_operations() {
+  check_dot = 0;
   QPushButton *button = (QPushButton *)sender();
   button->setChecked(true);
   if (button->text() == "sin") {

@@ -58,7 +58,6 @@ public:
     QPushButton *pushButton_scale;
     QLabel *label_2;
     QLineEdit *lineEdit;
-    QLabel *label_3;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -350,9 +349,6 @@ public:
         lineEdit = new QLineEdit(centralwidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(650, 10, 570, 570));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(430, 60, 181, 61));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -397,7 +393,6 @@ public:
         pushButton_opened_brace->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
     } // retranslateUi
 
 };
