@@ -9,6 +9,23 @@ QString check_dot;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
+  h = 0.1;
+  xBegin = -3;
+  xEnd = 3 + h;
+  ui->widget->xAxis->setRange(-4, 4);
+  ui->widget->yAxis->setRange(0, 9);
+  //  X = xBegin;
+  N = (xEnd - xBegin) / h + 2;
+  for (X = xBegin; X <= xEnd; X += h) {
+    if (X <= xEnd) {
+      x.push_back(X);
+      y.push_back(X * X);
+    }
+    ui->widget->addGraph();
+    ui->widget->graph(0)->addData(x, y);
+    ui->widget->replot();
+  }
+
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(digits_numbers()));
@@ -54,10 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
   connect(ui->pushButton_log, SIGNAL(clicked()), this,
           SLOT(trigeometry_operations()));
 
-  ui->pushButton_div->setCheckable(false);
-  ui->pushButton_mul->setCheckable(false);
-  ui->pushButton_sum->setCheckable(false);
-  ui->pushButton_sub->setCheckable(false);
+  // ui->pushButton_div->setCheckable(false);
+  // ui->pushButton_mul->setCheckable(false);
+  // ui->pushButton_sum->setCheckable(false);
+  // ui->pushButton_sub->setCheckable(false);
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -260,4 +277,31 @@ void MainWindow::trigeometry_operations() {
   } else {
     ui->label->setText(button->text() + "(");
   }
+}
+
+void MainWindow::on_pushButton_build_graphic_clicked() {
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(TimerSlot()));
+  ui->widget->clearGraphs();
+  timer->start(20);
+  X = xBegin;
+  x.clear();
+  y.clear();
+}
+
+void MainWindow::TimerSlot() {
+  if (time <= 20 * N) {
+    if (X <= xEnd) {
+      x.push_back(X);
+      y.push_back(X * X);
+      X += h;
+    }
+    time += 20;
+  } else {
+    time = 0;
+    timer->stop();
+  }
+  ui->widget->addGraph();
+  ui->widget->graph(0)->addData(x, y);
+  ui->widget->replot();
 }

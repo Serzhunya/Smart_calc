@@ -12,10 +12,10 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
+#include <qcustomplot.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -57,13 +57,14 @@ public:
     QPushButton *pushButton_opened_brace;
     QPushButton *pushButton_scale;
     QLabel *label_2;
-    QLineEdit *lineEdit;
+    QCustomPlot *widget;
+    QPushButton *pushButton_build_graphic;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1229, 588);
+        MainWindow->resize(1221, 589);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -346,9 +347,16 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(30, 70, 321, 51));
         label_2->setFont(font);
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(650, 10, 570, 570));
+        widget = new QCustomPlot(centralwidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(660, 30, 541, 481));
+        pushButton_build_graphic = new QPushButton(centralwidget);
+        pushButton_build_graphic->setObjectName(QString::fromUtf8("pushButton_build_graphic"));
+        pushButton_build_graphic->setGeometry(QRect(660, 520, 541, 51));
+        pushButton_build_graphic->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
+"	background-color: white;\n"
+"	color: purple;\n"
+"	border: 0.1px solid grey;"));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -393,6 +401,7 @@ public:
         pushButton_opened_brace->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        pushButton_build_graphic->setText(QCoreApplication::translate("MainWindow", "Build graphic", nullptr));
     } // retranslateUi
 
 };

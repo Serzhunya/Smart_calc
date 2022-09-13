@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,11 +15,13 @@ SOURCES += \
     create_stack_sign.c \
     main.cpp \
     mainwindow.cpp \
+    qcustomplot.cpp \
     support_func.c \
     validation.c
 
 HEADERS += \
     mainwindow.h \
+    qcustomplot.h \
     s21_calc.h
 
 FORMS += \

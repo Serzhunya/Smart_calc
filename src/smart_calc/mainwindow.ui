@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1229</width>
-    <height>588</height>
+    <width>1221</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -706,18 +706,45 @@ color: rgb(255, 0, 200);
      <string>0</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QCustomPlot" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>10</y>
-      <width>570</width>
-      <height>570</height>
+      <x>660</x>
+      <y>30</y>
+      <width>541</width>
+      <height>481</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_build_graphic">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>520</y>
+      <width>541</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;	
+	background-color: white;
+	color: purple;
+	border: 0.1px solid grey;</string>
+    </property>
+    <property name="text">
+     <string>Build graphic</string>
     </property>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
