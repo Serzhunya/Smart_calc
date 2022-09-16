@@ -11,9 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 #include <qcustomplot.h>
 
@@ -58,7 +60,11 @@ public:
     QPushButton *pushButton_scale;
     QLabel *label_2;
     QCustomPlot *widget;
-    QPushButton *pushButton_build_graphic;
+    QGroupBox *groupBox;
+    QSpinBox *spinBox_min;
+    QSpinBox *spinBox_max;
+    QPushButton *pushButton_funx;
+    QPushButton *pushButton_build_graph;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -349,14 +355,22 @@ public:
         label_2->setFont(font);
         widget = new QCustomPlot(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(660, 30, 541, 481));
-        pushButton_build_graphic = new QPushButton(centralwidget);
-        pushButton_build_graphic->setObjectName(QString::fromUtf8("pushButton_build_graphic"));
-        pushButton_build_graphic->setGeometry(QRect(660, 520, 541, 51));
-        pushButton_build_graphic->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
-"	background-color: white;\n"
-"	color: purple;\n"
-"	border: 0.1px solid grey;"));
+        widget->setGeometry(QRect(660, 10, 541, 421));
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(660, 440, 541, 80));
+        spinBox_min = new QSpinBox(groupBox);
+        spinBox_min->setObjectName(QString::fromUtf8("spinBox_min"));
+        spinBox_min->setGeometry(QRect(100, 40, 121, 21));
+        spinBox_max = new QSpinBox(groupBox);
+        spinBox_max->setObjectName(QString::fromUtf8("spinBox_max"));
+        spinBox_max->setGeometry(QRect(300, 40, 121, 21));
+        pushButton_funx = new QPushButton(centralwidget);
+        pushButton_funx->setObjectName(QString::fromUtf8("pushButton_funx"));
+        pushButton_funx->setGeometry(QRect(660, 530, 251, 51));
+        pushButton_build_graph = new QPushButton(centralwidget);
+        pushButton_build_graph->setObjectName(QString::fromUtf8("pushButton_build_graph"));
+        pushButton_build_graph->setGeometry(QRect(950, 530, 251, 51));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -401,7 +415,9 @@ public:
         pushButton_opened_brace->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        pushButton_build_graphic->setText(QCoreApplication::translate("MainWindow", "Build graphic", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\320\230\320\275\321\202\320\265\321\200\320\262\320\260\320\273 \320\276\321\201\320\270 Y", nullptr));
+        pushButton_funx->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        pushButton_build_graph->setText(QCoreApplication::translate("MainWindow", "Build", nullptr));
     } // retranslateUi
 
 };

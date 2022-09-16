@@ -10,21 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   h = 0.1;
-  xBegin = -3;
-  xEnd = 3 + h;
-  ui->widget->xAxis->setRange(-4, 4);
-  ui->widget->yAxis->setRange(0, 9);
-  //  X = xBegin;
-  N = (xEnd - xBegin) / h + 2;
-  for (X = xBegin; X <= xEnd; X += h) {
-    if (X <= xEnd) {
-      x.push_back(X);
-      y.push_back(X * X);
-    }
-    ui->widget->addGraph();
-    ui->widget->graph(0)->addData(x, y);
-    ui->widget->replot();
-  }
+  ui->widget->addGraph();
+  ui->spinBox_min->setMinimum(-1000000);
+  ui->spinBox_max->setMinimum(-1000000);
+  ui->spinBox_min->setMaximum(1000000);
+  ui->spinBox_max->setMaximum(1000000);
 
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
@@ -168,6 +158,8 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->label->setText("0");
   ui->label_2->setText("0");
   check_dot = 0;
+  x.clear();
+  y.clear();
 }
 
 void MainWindow::on_pushButton_result_clicked() {
@@ -185,6 +177,7 @@ void MainWindow::on_pushButton_result_clicked() {
     QString str_output = QString::number(output);
     ui->label->setText(str_output);
     ui->label_2->setText(str_output);
+    create_graph();
   }
 }
 
@@ -279,29 +272,53 @@ void MainWindow::trigeometry_operations() {
   }
 }
 
-void MainWindow::on_pushButton_build_graphic_clicked() {
-  timer = new QTimer(this);
-  connect(timer, SIGNAL(timeout()), this, SLOT(TimerSlot()));
-  ui->widget->clearGraphs();
-  timer->start(20);
-  X = xBegin;
-  x.clear();
-  y.clear();
-}
 
-void MainWindow::TimerSlot() {
-  if (time <= 20 * N) {
-    if (X <= xEnd) {
-      x.push_back(X);
-      y.push_back(X * X);
-      X += h;
-    }
-    time += 20;
-  } else {
-    time = 0;
-    timer->stop();
+void MainWindow::create_graph() {
+  QString text = ui->label->text();
+  QByteArray graph_bit = text.toLocal8Bit();
+  char *graph_str = graph_bit.data();
+  QString str_output;
+  double output;
+  int min = ui->spinBox_min->value();
+  int max = ui->spinBox_max->value();
+//  int code = validation(graph_str);
+//  if (!code) {
+//    output = create_graphic(graph_str, max, min);
+//  }
+  for (X = min; X <= max; X += 0.1) {
+    x.push_back(X);
+    output = create_graphic(graph_str, max, min);
+    y.push_back(output);
   }
-  ui->widget->addGraph();
   ui->widget->graph(0)->addData(x, y);
+  ui->widget->xAxis->setRange(min, max);
+  ui->widget->yAxis->setRange(min, max);
   ui->widget->replot();
 }
+
+
+
+void MainWindow::on_pushButton_funx_clicked()
+{
+    QPushButton *button = (QPushButton *)(sender());
+    QString new_label;
+    QString new_label_2;
+    if (ui->label->text() != "0") {
+      new_label = ui->label->text() + button->text();
+    } else {
+      new_label = button->text();
+    }
+    ui->label->setText(new_label);
+    if (ui->label_2->text() != "0") {
+      new_label_2 = ui->label_2->text() + button->text();
+    } else {
+      new_label_2 = button->text();
+    }
+    ui->label_2->setText(new_label_2);
+}
+
+void MainWindow::on_pushButton_build_graph_clicked()
+{
+    create_graph();
+}
+

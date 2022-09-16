@@ -44,9 +44,6 @@ double pop_digit(Stack_digit* stack);
 double get_operation_unary(Stack_digit* digit_st, Stack_sign* sign_st);
 double math_unary(double num1, char sign);
 int validation(char* input_str);
+double create_graphic(char* input, int max, int min);
 
 #endif  // SRC_S21_CALC_H_
-
-// #ifdef __cplusplus
-// }
-// #endif

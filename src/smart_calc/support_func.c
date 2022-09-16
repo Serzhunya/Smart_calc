@@ -1,7 +1,7 @@
 #include "s21_calc.h"
 
 char* create_lexem(char* input) {
-  char* sign = "+-*/() ^mcstainqlo=";
+  char* sign = "+-*/() ^mcstainqlox=";
   int index = strcspn(input, sign);
   char* lexem = calloc(255, sizeof(char));
   if (index == 0) {
@@ -16,7 +16,7 @@ char* create_lexem(char* input) {
 
 void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
   char sign_in_stack = '\0';
-  if (*lexem >= 48 && *lexem <= 57) {
+  if (*lexem >= 48 && *lexem <= 57 || *lexem == 120) {
     strcat(pol_notation, lexem);
     strcat(pol_notation, " ");
   }

@@ -21,19 +21,15 @@ char* create_polish_notation(char* input, Stack_sign sign_st) {
     minus = input[0];
     input = input + 1;
   }
-  for (int i = strlen(input); i >= 0; i--) {
+  for (int i = strlen(input); i >= 0; i--) { // this cicle optimize in function, use in create_graphic()
     if (strlen(input) == 0) {
       break;
     }
     char* lexem = create_lexem(input);
-    // if (minus) {
-    //   memmove(lexem + 1, lexem, strlen(lexem));
-    //   lexem[0] = '-';
-    // }
     input = input + strlen(lexem);
     distribution_lexem(lexem, &sign_st, pol_notation);
     free(lexem);
-  }
+  } // this cicle optimize in function, use in create_graphic()
   while (!isempty_sign(&sign_st)) {
     char sign_in_stack = peek_sign(&sign_st);
     char array_sign_in_stack[3] = {sign_in_stack, ' ', '\0'};

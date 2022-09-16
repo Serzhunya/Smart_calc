@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QVector>
 #include <QTimer>
+#include <QVector>
+#include <QtMath>
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,11 +30,9 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   double xBegin, xEnd, h, X;
-  int N;
+  // int N;
 
   QVector<double> x, y;
-  QTimer *timer; // создание объекта
-  int time; // создание переменной
 
  private slots:
   void digits_numbers();
@@ -44,7 +43,8 @@ class MainWindow : public QMainWindow {
   void on_pushButton_result_clicked();
   void braces_buttons();
   void trigeometry_operations();
-  void on_pushButton_build_graphic_clicked();
-  void TimerSlot();
+  void create_graph();
+  void on_pushButton_funx_clicked();
+  void on_pushButton_build_graph_clicked();
 };
 #endif  // MAINWINDOW_H

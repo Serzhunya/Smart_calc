@@ -710,29 +710,69 @@ color: rgb(255, 0, 200);
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>30</y>
+      <y>10</y>
       <width>541</width>
-      <height>481</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_build_graphic">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>520</y>
+      <y>440</y>
       <width>541</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Интервал оси Y</string>
+    </property>
+    <widget class="QSpinBox" name="spinBox_min">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>40</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_max">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>40</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_funx">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>530</y>
+      <width>251</width>
       <height>51</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;	
-	background-color: white;
-	color: purple;
-	border: 0.1px solid grey;</string>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_build_graph">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>530</y>
+      <width>251</width>
+      <height>51</height>
+     </rect>
     </property>
     <property name="text">
-     <string>Build graphic</string>
+     <string>Build</string>
     </property>
    </widget>
   </widget>

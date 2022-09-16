@@ -1,7 +1,5 @@
 #include "s21_calc.h"
 
-// int count_digit = 0;
-
 void createEmptyStack_digit(Stack_digit *stack) {
   stack->top = -1;
   stack->count = 0;
