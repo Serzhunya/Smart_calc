@@ -55,6 +55,7 @@ OBJECTS_DIR   = ./
 SOURCES       = ../smart_calc/calc.c \
 		../smart_calc/create_stack_digit.c \
 		../smart_calc/create_stack_sign.c \
+		../smart_calc/graphic.c \
 		../smart_calc/main.cpp \
 		../smart_calc/mainwindow.cpp \
 		../smart_calc/qcustomplot.cpp \
@@ -64,6 +65,7 @@ SOURCES       = ../smart_calc/calc.c \
 OBJECTS       = calc.o \
 		create_stack_digit.o \
 		create_stack_sign.o \
+		graphic.o \
 		main.o \
 		mainwindow.o \
 		qcustomplot.o \
@@ -331,6 +333,7 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		../smart_calc/s21_calc.h ../smart_calc/calc.c \
 		../smart_calc/create_stack_digit.c \
 		../smart_calc/create_stack_sign.c \
+		../smart_calc/graphic.c \
 		../smart_calc/main.cpp \
 		../smart_calc/mainwindow.cpp \
 		../smart_calc/qcustomplot.cpp \
@@ -912,7 +915,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../smart_calc/mainwindow.h ../smart_calc/qcustomplot.h ../smart_calc/s21_calc.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../smart_calc/calc.c ../smart_calc/create_stack_digit.c ../smart_calc/create_stack_sign.c ../smart_calc/main.cpp ../smart_calc/mainwindow.cpp ../smart_calc/qcustomplot.cpp ../smart_calc/support_func.c ../smart_calc/validation.c $(DISTDIR)/
+	$(COPY_FILE) --parents ../smart_calc/calc.c ../smart_calc/create_stack_digit.c ../smart_calc/create_stack_sign.c ../smart_calc/graphic.c ../smart_calc/main.cpp ../smart_calc/mainwindow.cpp ../smart_calc/qcustomplot.cpp ../smart_calc/support_func.c ../smart_calc/validation.c $(DISTDIR)/
 	$(COPY_FILE) --parents ../smart_calc/mainwindow.ui $(DISTDIR)/
 
 
@@ -954,6 +957,12 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../smart_calc/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QtMath \
+		/usr/local/lib/QtCore.framework/Headers/qmath.h \
 		../smart_calc/s21_calc.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
@@ -1003,19 +1012,37 @@ create_stack_digit.o: ../smart_calc/create_stack_digit.c ../smart_calc/s21_calc.
 create_stack_sign.o: ../smart_calc/create_stack_sign.c ../smart_calc/s21_calc.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o create_stack_sign.o ../smart_calc/create_stack_sign.c
 
+graphic.o: ../smart_calc/graphic.c 
+	$(CC) -c $(CFLAGS) $(INCPATH) -o graphic.o ../smart_calc/graphic.c
+
 main.o: ../smart_calc/main.cpp /usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h \
 		../smart_calc/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QtMath \
+		/usr/local/lib/QtCore.framework/Headers/qmath.h \
 		../smart_calc/s21_calc.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../smart_calc/main.cpp
 
 mainwindow.o: ../smart_calc/mainwindow.cpp ../smart_calc/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtCore.framework/Headers/QtMath \
+		/usr/local/lib/QtCore.framework/Headers/qmath.h \
 		../smart_calc/s21_calc.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../smart_calc/qcustomplot.h \
+		/usr/local/lib/QtCore.framework/Headers/qnumeric.h \
+		/usr/local/lib/QtCore.framework/Headers/QtNumeric
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../smart_calc/mainwindow.cpp
 
 qcustomplot.o: ../smart_calc/qcustomplot.cpp ../smart_calc/qcustomplot.h \

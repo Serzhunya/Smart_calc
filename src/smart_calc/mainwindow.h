@@ -6,15 +6,10 @@
 #include <QVector>
 #include <QtMath>
 
-#ifdef __cplusplus
 extern "C" {
-#endif
-
 #include "s21_calc.h"
-
-#ifdef __cplusplus
 }
-#endif
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,10 +25,7 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   double xBegin, xEnd, h, X;
-  // int N;
-
   QVector<double> x, y;
-
  private slots:
   void digits_numbers();
   void on_pushButton_dot_clicked();

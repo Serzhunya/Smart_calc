@@ -157,6 +157,7 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->pushButton_sub->setCheckable(false);
   ui->label->setText("0");
   ui->label_2->setText("0");
+  ui->widget->graph(0)->data()->clear();
   check_dot = 0;
   x.clear();
   y.clear();
@@ -274,10 +275,11 @@ void MainWindow::trigeometry_operations() {
 
 
 void MainWindow::create_graph() {
-  QString text = ui->label->text();
+  ui->widget->graph(0)->data()->clear();
+  QString text = ui->label_2->text();
   QByteArray graph_bit = text.toLocal8Bit();
   char *graph_str = graph_bit.data();
-  QString str_output;
+  // QString str_output;
   double output;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();
@@ -287,7 +289,7 @@ void MainWindow::create_graph() {
 //  }
   for (X = min; X <= max; X += 0.1) {
     x.push_back(X);
-    output = create_graphic(graph_str, max, min);
+    output = create_graphic(graph_str, sign_st, X);
     y.push_back(output);
   }
   ui->widget->graph(0)->addData(x, y);

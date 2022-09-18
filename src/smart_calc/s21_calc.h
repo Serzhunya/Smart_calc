@@ -44,6 +44,11 @@ double pop_digit(Stack_digit* stack);
 double get_operation_unary(Stack_digit* digit_st, Stack_sign* sign_st);
 double math_unary(double num1, char sign);
 int validation(char* input_str);
-double create_graphic(char* input, int max, int min);
+double create_graphic(char* input, Stack_sign sign_st, double x);
+void parsing_pol_notation_xy(char* lexem, Stack_sign* sign_st,
+                          Stack_digit* digit_st, double x);
+double create_output_xy(char* polish_notation, Stack_sign* sign_st, Stack_digit* digit_st, double x);
+double get_operation(Stack_digit* digit_st, Stack_sign* sign_st);
+double math(double num1, double num2, char sign);
 
 #endif  // SRC_S21_CALC_H_

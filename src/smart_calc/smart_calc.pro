@@ -13,6 +13,7 @@ SOURCES += \
     calc.c \
     create_stack_digit.c \
     create_stack_sign.c \
+    graphic.c \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \

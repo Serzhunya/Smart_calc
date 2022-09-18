@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>589</height>
+    <width>1461</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -711,8 +711,8 @@ color: rgb(255, 0, 200);
      <rect>
       <x>660</x>
       <y>10</y>
-      <width>541</width>
-      <height>421</height>
+      <width>791</width>
+      <height>641</height>
      </rect>
     </property>
    </widget>
@@ -720,7 +720,7 @@ color: rgb(255, 0, 200);
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>440</y>
+      <y>650</y>
       <width>541</width>
       <height>80</height>
      </rect>
@@ -752,21 +752,21 @@ color: rgb(255, 0, 200);
    <widget class="QPushButton" name="pushButton_funx">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>530</y>
+      <x>670</x>
+      <y>730</y>
       <width>251</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>X</string>
+     <string>x</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_build_graph">
     <property name="geometry">
      <rect>
-      <x>950</x>
-      <y>530</y>
+      <x>930</x>
+      <y>730</y>
       <width>251</width>
       <height>51</height>
      </rect>

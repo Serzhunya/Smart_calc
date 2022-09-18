@@ -70,7 +70,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1221, 589);
+        MainWindow->resize(1461, 784);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -355,10 +355,10 @@ public:
         label_2->setFont(font);
         widget = new QCustomPlot(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(660, 10, 541, 421));
+        widget->setGeometry(QRect(660, 10, 791, 641));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(660, 440, 541, 80));
+        groupBox->setGeometry(QRect(660, 650, 541, 80));
         spinBox_min = new QSpinBox(groupBox);
         spinBox_min->setObjectName(QString::fromUtf8("spinBox_min"));
         spinBox_min->setGeometry(QRect(100, 40, 121, 21));
@@ -367,10 +367,10 @@ public:
         spinBox_max->setGeometry(QRect(300, 40, 121, 21));
         pushButton_funx = new QPushButton(centralwidget);
         pushButton_funx->setObjectName(QString::fromUtf8("pushButton_funx"));
-        pushButton_funx->setGeometry(QRect(660, 530, 251, 51));
+        pushButton_funx->setGeometry(QRect(670, 730, 251, 51));
         pushButton_build_graph = new QPushButton(centralwidget);
         pushButton_build_graph->setObjectName(QString::fromUtf8("pushButton_build_graph"));
-        pushButton_build_graph->setGeometry(QRect(950, 530, 251, 51));
+        pushButton_build_graph->setGeometry(QRect(930, 730, 251, 51));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -416,7 +416,7 @@ public:
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "\320\230\320\275\321\202\320\265\321\200\320\262\320\260\320\273 \320\276\321\201\320\270 Y", nullptr));
-        pushButton_funx->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
+        pushButton_funx->setText(QCoreApplication::translate("MainWindow", "x", nullptr));
         pushButton_build_graph->setText(QCoreApplication::translate("MainWindow", "Build", nullptr));
     } // retranslateUi
 

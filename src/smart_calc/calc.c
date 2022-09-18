@@ -4,13 +4,18 @@
 //   Stack_sign sign_st;
 //   Stack_digit digit_st;
 
-//  char* input = "2^3^2+34/2+s1+2)";
-//  char* polish_notation = create_polish_notation(input, sign_st);
-//  printf("polish_notation: %s\n", polish_notation);
-//  double output = create_output(polish_notation, sign_st, digit_st);
-//  printf("output: %.7f\n", output);
-//  free(polish_notation);
-//  return 0;
+//   char* input = "x^2";
+// //  char* polish_notation = create_polish_notation(input, sign_st);
+// //  printf("polish_notation: %s\n", polish_notation);
+// //  double output = create_output(polish_notation, sign_st, digit_st);
+// //  printf("output: %.7f\n", output);
+// //  free(polish_notation);
+//   double output;
+//   char* polish_notation = create_polish_notation(input, sign_st);
+//   printf("polish_notation: %s\n", polish_notation);
+//   output = create_output_xy(polish_notation, &sign_st, &digit_st, X);
+
+//   return 0;
 // }
 
 char* create_polish_notation(char* input, Stack_sign sign_st) {

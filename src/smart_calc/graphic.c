@@ -1,42 +1,40 @@
-double create_graphic(char* input) {
-    Stack_sign sign_st;
+#include "s21_calc.h"
+
+double create_graphic(char* input, Stack_sign sign_st, double x) {
+    Stack_digit digit_st;
     double output;
     char* polish_notation = create_polish_notation(input, sign_st);
-    double output = create_output_xy(polish_notation, sign_st, digit_st, max, min);
+    output = create_output_xy(polish_notation, &sign_st, &digit_st, x);
     return output;
 }
 
 
-double create_output_xy(char* polish_notation, Stack_sign* sign_st, Stack_sign* digit_st) {
+double create_output_xy(char* polish_notation, Stack_sign* sign_st, Stack_digit* digit_st, double x) {
     double output = 0.0;
-    createEmptyStack_digit(&digit_st);
-    createEmptyStack_sign(&sign_st);
-    for (int i = strlen(pol_notation); i > 0; i--) {
-        if (strlen(pol_notation) == 0) {
+    createEmptyStack_digit(digit_st);
+    createEmptyStack_sign(sign_st);
+    for (int i = strlen(polish_notation); i > 0; i--) {
+        if (strlen(polish_notation) == 0) {
             break;
         }
-        char* lexem = create_lexem(pol_notation);
-        parsing_pol_notation_xy(lexem, &sign_st, &digit_st, max, min);
-        pol_notation = pol_notation + strlen(lexem);
+        char* lexem = create_lexem(polish_notation); // x 2 ^
+        parsing_pol_notation_xy(lexem, sign_st, digit_st, x); 
+        polish_notation = polish_notation + strlen(lexem);
         free(lexem);
-  }
-    for (X = min; X <= max; X += 0.1) {
     }
+    output = pop_digit(digit_st);
     return output;
 }
 
 void parsing_pol_notation_xy(char* lexem, Stack_sign* sign_st,
-                          Stack_digit* digit_st) {
+                          Stack_digit* digit_st, double x) {
   char sign_cur = *lexem;
   if (sign_cur >= 48 && sign_cur <= 57) {
     double num = atof(lexem);
     push_digit(digit_st, num);
   }
-if (sign_cur == 120) {
-    int X;
-    for (X = min; X <= max; X += 0.1) {
-        push_digit(digit_st, X);
-    }
+  if (sign_cur == 120) {
+       push_digit(digit_st, x);
   }
   if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
       sign_cur == '*' || sign_cur == '^' || sign_cur == 'm') {
