@@ -9,7 +9,7 @@ QString check_dot;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
-  h = 0.1;
+  // h = 0.1;
   ui->widget->addGraph();
   ui->spinBox_min->setMinimum(-1000000);
   ui->spinBox_max->setMinimum(-1000000);
@@ -141,7 +141,8 @@ void MainWindow::math_operations() {
   }
   if (button->text() == "mod") {
     ui->label_2->setText(ui->label_2->text() + "m");
-  } else {
+  } 
+  else {
     if (ui->label_2->text() != "0") {
       ui->label_2->setText(ui->label_2->text() + button->text());
     } else {
@@ -151,10 +152,10 @@ void MainWindow::math_operations() {
 }
 
 void MainWindow::on_pushButton_clear_clicked() {
-  ui->pushButton_div->setCheckable(false);
-  ui->pushButton_mul->setCheckable(false);
-  ui->pushButton_sum->setCheckable(false);
-  ui->pushButton_sub->setCheckable(false);
+  // ui->pushButton_div->setCheckable(false);
+  // ui->pushButton_mul->setCheckable(false);
+  // ui->pushButton_sum->setCheckable(false);
+  // ui->pushButton_sub->setCheckable(false);
   ui->label->setText("0");
   ui->label_2->setText("0");
   ui->widget->graph(0)->data()->clear();
@@ -178,7 +179,7 @@ void MainWindow::on_pushButton_result_clicked() {
     QString str_output = QString::number(output);
     ui->label->setText(str_output);
     ui->label_2->setText(str_output);
-    create_graph();
+//    create_graph();
   }
 }
 

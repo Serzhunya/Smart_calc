@@ -75,9 +75,9 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(30, 10, 551, 51));
+        label->setGeometry(QRect(30, 10, 1421, 61));
         QFont font;
-        font.setPointSize(22);
+        font.setPointSize(16);
         label->setFont(font);
         pushButton_7 = new QPushButton(centralwidget);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
@@ -355,7 +355,7 @@ public:
         label_2->setFont(font);
         widget = new QCustomPlot(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(660, 10, 791, 641));
+        widget->setGeometry(QRect(660, 80, 791, 571));
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(660, 650, 541, 80));
@@ -415,7 +415,7 @@ public:
         pushButton_opened_brace->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
         pushButton_scale->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\320\230\320\275\321\202\320\265\321\200\320\262\320\260\320\273 \320\276\321\201\320\270 Y", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "\320\230\320\275\321\202\320\265\321\200\320\262\320\260\320\273 \320\276\321\201\320\270 X", nullptr));
         pushButton_funx->setText(QCoreApplication::translate("MainWindow", "x", nullptr));
         pushButton_build_graph->setText(QCoreApplication::translate("MainWindow", "Build", nullptr));
     } // retranslateUi

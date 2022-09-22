@@ -173,10 +173,13 @@ double math_unary(double num1, char sign) {
 }
 
 void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
-                          Stack_digit* digit_st) {
+                          Stack_digit* digit_st, int minus) {
   char sign_cur = *lexem;
   if (sign_cur >= 48 && sign_cur <= 57) {
     double num = atof(lexem);
+    if(minus) {
+      num = -num;
+    }
     push_digit(digit_st, num);
   }
   if (sign_cur == '-' || sign_cur == '+' || sign_cur == '/' ||
