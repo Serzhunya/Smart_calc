@@ -63,9 +63,8 @@ int validation(char *input_str) {
         char_valid_4 == '0' || char_valid_4 == '.') {
       code = 1;
     }
-    if (char_valid_5 == ')' || char_valid_5 == '.' || char_valid_5 == '+' ||
-        char_valid_5 == '-' || char_valid_5 == '*' || char_valid_5 == '/' ||
-        char_valid_5 == '^') {
+    if (char_valid_5 == ')' || char_valid_5 == '.' || char_valid_5 == '+' || 
+        char_valid_5 == '*' || char_valid_5 == '/' || char_valid_5 == '^') {
       code = 1;
     }
     // input_str = input_str + index_1 + 1;

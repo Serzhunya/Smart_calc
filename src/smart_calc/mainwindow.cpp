@@ -3,7 +3,7 @@
 #include "./ui_mainwindow.h"
 
 Stack_sign sign_st;
-Stack_digit digit_st;
+//Stack_digit digit_st;
 QString check_dot;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -60,11 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
           SLOT(trigeometry_operations()));
   connect(ui->pushButton_log, SIGNAL(clicked()), this,
           SLOT(trigeometry_operations()));
-
-  // ui->pushButton_div->setCheckable(false);
-  // ui->pushButton_mul->setCheckable(false);
-  // ui->pushButton_sum->setCheckable(false);
-  // ui->pushButton_sub->setCheckable(false);
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -152,10 +147,6 @@ void MainWindow::math_operations() {
 }
 
 void MainWindow::on_pushButton_clear_clicked() {
-  // ui->pushButton_div->setCheckable(false);
-  // ui->pushButton_mul->setCheckable(false);
-  // ui->pushButton_sum->setCheckable(false);
-  // ui->pushButton_sub->setCheckable(false);
   ui->label->setText("0");
   ui->label_2->setText("0");
   ui->widget->graph(0)->data()->clear();
@@ -166,7 +157,6 @@ void MainWindow::on_pushButton_clear_clicked() {
 
 void MainWindow::on_pushButton_result_clicked() {
   QString text = ui->label_2->text();
-  // ui->label_2->setText(text);
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
   int code = validation(input_str);
@@ -174,12 +164,10 @@ void MainWindow::on_pushButton_result_clicked() {
     ui->label->setText("Error");
     ui->label_2->setText("Error");
   } else {
-    char *polish_notation = create_polish_notation(input_str, sign_st);
-    double output = create_output(polish_notation, sign_st, digit_st);
+    double output = calc(input_str);
     QString str_output = QString::number(output);
     ui->label->setText(str_output);
     ui->label_2->setText(str_output);
-//    create_graph();
   }
 }
 
@@ -280,7 +268,6 @@ void MainWindow::create_graph() {
   QString text = ui->label_2->text();
   QByteArray graph_bit = text.toLocal8Bit();
   char *graph_str = graph_bit.data();
-  // QString str_output;
   double output;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();

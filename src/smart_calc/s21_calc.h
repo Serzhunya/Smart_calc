@@ -21,7 +21,8 @@ typedef struct Stack_t {
   int count;
 } Stack_sign;
 
-char* create_polish_notation(char* input, Stack_sign sign_st);
+double calc(char* input);
+char* create_polish_notation(char* input_change, Stack_sign sign_st);
 void createEmptyStack_sign(Stack_sign* stack);
 char* create_lexem(char* input);
 void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation);
@@ -36,7 +37,7 @@ int isempty_sign(Stack_sign* stack);
 double create_output(char* pol_notation, Stack_sign sign_st,
                      Stack_digit digit_st);
 void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
-                          Stack_digit* digit_st, int minus);
+                          Stack_digit* digit_st);
 void push_digit(Stack_digit* stack, double newitem);
 void printStack_digit(Stack_digit* stack);
 void createEmptyStack_digit(Stack_digit* stack);
