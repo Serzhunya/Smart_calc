@@ -50,5 +50,6 @@ void parsing_pol_notation_xy(char* lexem, Stack_sign* sign_st,
 double create_output_xy(char* polish_notation, Stack_sign* sign_st, Stack_digit* digit_st, double x);
 double get_operation(Stack_digit* digit_st, Stack_sign* sign_st);
 double math(double num1, double num2, char sign);
+char* create_input_change(char* input);
 
 #endif  // SRC_S21_CALC_H_
