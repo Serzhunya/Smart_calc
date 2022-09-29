@@ -68,7 +68,7 @@ int validation(char *input_str) {
       code = 1;
     }
     // input_str = input_str + index_1 + 1;
-    input_str = input_str++;
+    input_str++;
   }
   return code;
 }
