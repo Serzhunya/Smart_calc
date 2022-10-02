@@ -67,8 +67,8 @@ int validation(char *input_str) {
         char_valid_5 == '*' || char_valid_5 == '/' || char_valid_5 == '^') {
       code = 1;
     }
-    // input_str = input_str + index_1 + 1;
-    input_str++;
+    input_str = input_str + index_1 + 1;
+    // input_str++;
   }
   return code;
 }

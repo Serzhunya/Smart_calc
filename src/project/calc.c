@@ -16,7 +16,7 @@ char* create_input_change(char* input) {
 	int minus = 0;
 	int minus_after_brace = 0;
     char* input_change = calloc(255, sizeof(char));
-    for (int i = 0; i < strlen(input); i++) {
+    for (size_t i = 0; i < strlen(input); i++) {
         if (input[i] == '-' && i == 0) {
             minus = 1;
         }
