@@ -182,7 +182,7 @@ void parsing_pol_notation(char* lexem, Stack_sign* sign_st,
   char sign_cur = *lexem;
   if (sign_cur >= 48 && sign_cur <= 57) {
     double num = atof(lexem);
-    if(minus) {
+    if (minus) {
       num = num * -1;
     }
     push_digit(digit_st, num);

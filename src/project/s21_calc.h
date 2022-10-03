@@ -1,4 +1,5 @@
-#ifndef SRC_S21_CALC_H_
+#ifndef SRC_PROJECT_S21_CALC_H_
+#define SRC_PROJECT_S21_CALC_H_
 
 #include <math.h>
 #include <stdio.h>
@@ -53,4 +54,4 @@ double get_operation(Stack_digit* digit_st, Stack_sign* sign_st);
 double math(double num1, double num2, char sign);
 char* create_input_change(char* input);
 
-#endif  // SRC_S21_CALC_H_
+#endif  // SRC_PROJECT_S21_CALC_H_

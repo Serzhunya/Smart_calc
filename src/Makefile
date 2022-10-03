@@ -64,6 +64,6 @@ clean:
 check:
 	cppcheck project/*.h project/*.c tests_calc/*.h tests_calc/*.c
 	cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
-	python3 ../materials/linters/cpplint.py --extension=c project/*.h project/*.c tests_calc/*.c tests_calc/*.h
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt obj_dir/./tests
-	CK_FORK=no leaks --atExit -- obj_dir/./tests
+	python3 ../materials/linters/cpplint.py --extension=c project/s21_calc.h project/mainwindow.h  project/*.c tests_calc/*.c tests_calc/*.h
+#	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt obj_dir/./tests
+	CK_FORK=no leaks --atExit -- obj_dir/./tests.out
