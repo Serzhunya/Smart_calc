@@ -17,8 +17,8 @@ double create_output_xy(char* polish_notation, Stack_sign* sign_st, Stack_digit*
         if (strlen(polish_notation) == 0) {
             break;
         }
-        char* lexem = create_lexem(polish_notation); // x 2 ^
-        parsing_pol_notation_xy(lexem, sign_st, digit_st, x); 
+        char* lexem = create_lexem(polish_notation);
+        parsing_pol_notation_xy(lexem, sign_st, digit_st, x);
         polish_notation = polish_notation + strlen(lexem);
         free(lexem);
     }

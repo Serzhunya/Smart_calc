@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SRC_PROJECT_MAINWINDOW_H_
+#define SRC_PROJECT_MAINWINDOW_H_
 
 #include <QMainWindow>
 #include <QTimer>
@@ -39,4 +39,4 @@ class MainWindow : public QMainWindow {
   void on_pushButton_funx_clicked();
   void on_pushButton_build_graph_clicked();
 };
-#endif  // MAINWINDOW_H
+#endif  // SRC_PROJECT_MAINWINDOW_H_
