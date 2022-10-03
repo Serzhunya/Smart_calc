@@ -33,8 +33,8 @@ uninstall: clean
 
 dvi: calc.dvi
 
-calc.dvi: calc.texi
-	texi2dvi calc.texi
+calc.dvi:
+	latex -output-directory=./docs ./docs/calc.tex -o ./docs/calc.pdf
 
 clean:
 	rm -rf *.css *.info *.out  *.html *.gcno *.gcda *.o *.a *.tar
@@ -49,5 +49,5 @@ tests:
 	$(CC) $(C_TESTS) $(C_FILES) -lcheck -o tests_calc/tests.out
 	tests_calc/./tests.out
 
-gcov_report:
-	$(MAKE) -f test.mk gcov_report
+gcov_report: tests
+	gcovr
