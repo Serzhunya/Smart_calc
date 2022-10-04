@@ -211,6 +211,26 @@ END_TEST
 // }
 // END_TEST
 
+START_TEST(test_22) {
+    char *str = malloc(50 * sizeof(char));
+    strcpy(str, "2^3^3");
+    double output = calc(str);
+    double true_res = 134217728;
+    ck_assert_double_eq(fabs(output - true_res), 0.0);
+    free(str);
+}
+END_TEST
+
+START_TEST(test_23) {
+    char *str = malloc(50 * sizeof(char));
+    strcpy(str, "2^3+3/1+(3*2)");
+    double output = calc(str);
+    double true_res = 17;
+    ck_assert_double_eq(fabs(output - true_res), 0.0);
+    free(str);
+}
+END_TEST
+
 Suite *suite_s21_calc_notation(void) {
     Suite *s = suite_create("s21_calc");
     TCase *tc = tcase_create("s21_calc");
@@ -236,6 +256,8 @@ Suite *suite_s21_calc_notation(void) {
     tcase_add_test(tc, test_19);
     tcase_add_test(tc, test_20);
     // tcase_add_test(tc, test_21);
+    tcase_add_test(tc, test_22);
+    tcase_add_test(tc, test_23);
     suite_add_tcase(s, tc);
     return s;
 }

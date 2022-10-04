@@ -17,7 +17,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>10</y>
       <width>1421</width>
       <height>61</height>
@@ -363,46 +363,6 @@ color: white;
      <string>=</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_percent">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>150</y>
-      <width>80</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-	font: 18pt &quot;.AppleSystemUIFont&quot;;
-	background-color: rgb(215, 215, 215);
-border: 0.1px solid grey;
-}</string>
-    </property>
-    <property name="text">
-     <string>%</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_plus_minus">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>150</y>
-      <width>80</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-	font: 18pt &quot;.AppleSystemUIFont&quot;;
-	background-color: rgb(215, 215, 215);
-border: 0.1px solid grey;
-}</string>
-    </property>
-    <property name="text">
-     <string>+/-</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_clear">
     <property name="geometry">
      <rect>
@@ -448,9 +408,9 @@ color: white;
    <widget class="QPushButton" name="pushButton_mod">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>240</y>
-      <width>121</width>
+      <x>100</x>
+      <y>150</y>
+      <width>81</width>
       <height>81</height>
      </rect>
     </property>
@@ -638,7 +598,7 @@ color: rgb(255, 0, 200);
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>150</y>
+      <y>240</y>
       <width>121</width>
       <height>81</height>
      </rect>
@@ -656,7 +616,7 @@ color: rgb(255, 0, 200);
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>150</y>
+      <y>240</y>
       <width>121</width>
       <height>81</height>
      </rect>
@@ -673,9 +633,9 @@ color: rgb(255, 0, 200);
    <widget class="QPushButton" name="pushButton_scale">
     <property name="geometry">
      <rect>
-      <x>509</x>
-      <y>240</y>
-      <width>121</width>
+      <x>190</x>
+      <y>150</y>
+      <width>81</width>
       <height>81</height>
      </rect>
     </property>
@@ -686,24 +646,6 @@ color: rgb(255, 0, 200);
     </property>
     <property name="text">
      <string>^</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>70</y>
-      <width>321</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>0</string>
     </property>
    </widget>
    <widget class="QCustomPlot" name="widget" native="true">
@@ -752,10 +694,10 @@ color: rgb(255, 0, 200);
    <widget class="QPushButton" name="pushButton_funx">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>730</y>
+      <x>370</x>
+      <y>150</y>
       <width>251</width>
-      <height>51</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
@@ -765,7 +707,7 @@ color: rgb(255, 0, 200);
    <widget class="QPushButton" name="pushButton_build_graph">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>800</x>
       <y>730</y>
       <width>251</width>
       <height>51</height>

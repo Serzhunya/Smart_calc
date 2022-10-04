@@ -10,7 +10,6 @@ extern "C" {
 #include "s21_calc.h"
 }
 
-
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -29,7 +28,6 @@ class MainWindow : public QMainWindow {
  private slots:
   void digits_numbers();
   void on_pushButton_dot_clicked();
-  void operations();
   void math_operations();
   void on_pushButton_clear_clicked();
   void on_pushButton_result_clicked();
