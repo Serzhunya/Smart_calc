@@ -1,5 +1,3 @@
-/// file \file
-
 /**
  * @file s21_calc.h
  */
