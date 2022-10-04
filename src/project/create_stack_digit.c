@@ -44,6 +44,7 @@ double peek_digit(Stack_digit *stack) {
   }
   return stack->data[stack->top - 1];
 }
+
 void printStack_digit(Stack_digit *stack) {
   printf("Stack_digit: ");
   for (int i = 0; i < stack->count; i++) {

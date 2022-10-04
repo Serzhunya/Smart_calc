@@ -35,6 +35,7 @@ dvi:
 	mkdir -p docs
 	doxygen Doxyfile
 	@mv html latex docs
+	open docs/html/index.html
 
 dist:
 	@tar -cf $(ARCHIVE).tar $(C_FILES) project/*.h Makefile

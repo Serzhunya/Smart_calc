@@ -4,9 +4,9 @@ double calc(char* input) {
     double output = 0.0;
     Stack_sign sign_st;
     Stack_digit digit_st;
-    char* input_change = create_input_change(input);  // меняется
-    char* polish_notation = create_polish_notation(input_change, sign_st);  // создается польская нотация
-    output = create_output(polish_notation, sign_st, digit_st);  // создается оутпут
+    char* input_change = create_input_change(input);
+    char* polish_notation = create_polish_notation(input_change, sign_st);
+    output = create_output(polish_notation, sign_st, digit_st);
     free(polish_notation);
     free(input_change);
     return output;
