@@ -3,7 +3,9 @@
 double calc(char* input) {
     double output = 0.0;
     Stack_sign sign_st;
+    createEmptyStack_sign(&sign_st);
     Stack_digit digit_st;
+    createEmptyStack_digit(&digit_st);
     char* input_change = create_input_change(input);
     char* polish_notation = create_polish_notation(input_change, sign_st);
     output = create_output(polish_notation, sign_st, digit_st);
@@ -40,7 +42,7 @@ char* create_input_change(char* input) {
 
 char* create_polish_notation(char* input_change, Stack_sign sign_st) {
     char* pol_notation = calloc(255, sizeof(char));
-    createEmptyStack_sign(&sign_st);
+    // createEmptyStack_sign(&sign_st);
     for (int i = strlen(input_change); i >= 0; i--) {
         if (strlen(input_change) == 0) {
             break;

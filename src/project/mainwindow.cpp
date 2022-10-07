@@ -218,12 +218,12 @@ void MainWindow::create_graph() {
   double output;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();
-  int code = validation(graph_str);
-  if (!code) {
-    output = create_graphic(graph_str, max, min);
-  } else {
-    ui->label->setText("Error");
-  }
+  // int code = validation(graph_str);
+  // if (!code) {
+  //   output = create_graphic(graph_str, max, min);
+  // } else {
+  //   ui->label->setText("Error");
+  // }
   for (X = min; X <= max; X += 0.1) {
     x.push_back(X);
     output = create_graphic(graph_str, sign_st, X);
