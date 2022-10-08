@@ -7,5 +7,5 @@ Besides calculating expressions, it also support the use of the x variable and t
 ### Installation
 
   ```
-  $ git clone https://github.com/Serzhunya/Calculator.git
+  $ git clone https://github.com/Serzhunya/Smart_calc.git
   ```
