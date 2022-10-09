@@ -36,5 +36,8 @@ class MainWindow : public QMainWindow {
   void create_graph();
   void on_pushButton_funx_clicked();
   void on_pushButton_build_graph_clicked();
+  void on_pushButton_X_clicked();
+  void change_X();
+  void on_pushButton_backspace_clicked();
 };
 #endif  // SRC_PROJECT_MAINWINDOW_H_

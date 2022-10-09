@@ -597,9 +597,9 @@ color: rgb(255, 0, 200);
    <widget class="QPushButton" name="pushButton_closed_brace">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>460</x>
       <y>240</y>
-      <width>121</width>
+      <width>81</width>
       <height>81</height>
      </rect>
     </property>
@@ -617,7 +617,7 @@ color: rgb(255, 0, 200);
      <rect>
       <x>370</x>
       <y>240</y>
-      <width>121</width>
+      <width>81</width>
       <height>81</height>
      </rect>
     </property>
@@ -761,6 +761,24 @@ color: rgb(255, 0, 200);
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_backspace">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>240</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;	
+	background-color: grey;
+	border: 0.1px solid grey;</string>
+    </property>
+    <property name="text">
+     <string>⌫ </string>
     </property>
    </widget>
   </widget>

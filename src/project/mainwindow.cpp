@@ -5,6 +5,8 @@
 Stack_sign sign_st;
 QString check_dot;
 QString input_real;
+QString X_output = "q";
+QString qtext;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -74,8 +76,8 @@ void MainWindow::digits_numbers() {
 void MainWindow::on_pushButton_dot_clicked() {
   QPushButton *button = (QPushButton *)(sender());
   if (!check_dot.contains(',')) {
-    ui->label->setText(ui->label->text() + ".");
-    input_real = input_real + ".";
+    ui->label->setText(ui->label->text() + ",");
+    input_real = input_real + ",";
   }
   check_dot += button->text();
 }
@@ -102,7 +104,12 @@ void MainWindow::math_operations() {
 
 void MainWindow::on_pushButton_clear_clicked() {
   ui->label->setText("0");
+  ui->label_2->setText("0");
+  ui->spinBox_x->setValue(0);
+  ui->spinBox_min->setValue(0);
+  ui->spinBox_max->setValue(0);
   input_real = "0";
+  X_output = "q";
   ui->widget->graph(0)->data()->clear();
   check_dot = 0;
   x.clear();
@@ -110,16 +117,22 @@ void MainWindow::on_pushButton_clear_clicked() {
 }
 
 void MainWindow::on_pushButton_result_clicked() {
-  QString text = input_real;
+    QString text;
+    if (X_output != "q") {
+        change_X();
+        text = qtext;
+    } else {
+        text = input_real;
+    }
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
   int code = validation(input_str);
   if (code) {
-    ui->label->setText("Error");
+    ui->label_2->setText("Error");
   } else {
     double output = calc(input_str);
     QString str_output = QString::number(output);
-    ui->label->setText(str_output);
+    ui->label_2->setText(str_output);
   }
 }
 
@@ -252,5 +265,34 @@ void MainWindow::on_pushButton_funx_clicked()
 void MainWindow::on_pushButton_build_graph_clicked()
 {
     create_graph();
+}
+
+
+void MainWindow::on_pushButton_X_clicked()
+{
+    QString new_label;
+    if (ui->label->text() != "0") {
+      new_label = ui->label->text() + "X";
+    } else {
+      new_label = "X";
+    }
+    X_output = "m";
+    ui->label->setText(new_label);
+}
+
+void MainWindow:: change_X() {
+    ui->spinBox_x->setMinimum(-1000000);
+    ui->spinBox_x->setMaximum(1000000);
+    QString X = QString::number(ui->spinBox_x->value());
+//    QString remove = X;
+    qtext = input_real + X;
+
+}
+
+void MainWindow::on_pushButton_backspace_clicked()
+{
+    ui->label->setText(ui->label->text().chopped(1));
+    input_real = input_real.chopped(1);
+    qtext = qtext.chopped(1);
 }
 

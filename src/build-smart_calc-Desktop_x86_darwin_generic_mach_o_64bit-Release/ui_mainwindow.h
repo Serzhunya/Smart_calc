@@ -65,6 +65,7 @@ public:
     QPushButton *pushButton_X;
     QSpinBox *spinBox_x;
     QLabel *label_2;
+    QPushButton *pushButton_backspace;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -317,13 +318,13 @@ public:
 "	border: 0.1px solid grey;"));
         pushButton_closed_brace = new QPushButton(centralwidget);
         pushButton_closed_brace->setObjectName(QString::fromUtf8("pushButton_closed_brace"));
-        pushButton_closed_brace->setGeometry(QRect(510, 240, 121, 81));
+        pushButton_closed_brace->setGeometry(QRect(460, 240, 81, 81));
         pushButton_closed_brace->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
 "	background-color: rgb(219, 110, 208);\n"
 "	border: 0.1px solid grey;"));
         pushButton_opened_brace = new QPushButton(centralwidget);
         pushButton_opened_brace->setObjectName(QString::fromUtf8("pushButton_opened_brace"));
-        pushButton_opened_brace->setGeometry(QRect(370, 240, 121, 81));
+        pushButton_opened_brace->setGeometry(QRect(370, 240, 81, 81));
         pushButton_opened_brace->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
 "	background-color: rgb(219, 110, 208);\n"
 "	border: 0.1px solid grey;"));
@@ -364,6 +365,12 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(10, 70, 1421, 61));
         label_2->setFont(font);
+        pushButton_backspace = new QPushButton(centralwidget);
+        pushButton_backspace->setObjectName(QString::fromUtf8("pushButton_backspace"));
+        pushButton_backspace->setGeometry(QRect(550, 240, 81, 81));
+        pushButton_backspace->setStyleSheet(QString::fromUtf8("font: 18pt \".AppleSystemUIFont\";	\n"
+"	background-color: grey;\n"
+"	border: 0.1px solid grey;"));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -410,6 +417,7 @@ public:
         pushButton_funx->setText(QCoreApplication::translate("MainWindow", "x", nullptr));
         pushButton_X->setText(QCoreApplication::translate("MainWindow", "X", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        pushButton_backspace->setText(QCoreApplication::translate("MainWindow", "\342\214\253 ", nullptr));
     } // retranslateUi
 
 };
