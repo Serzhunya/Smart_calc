@@ -1,5 +1,11 @@
 #include "s21_calc.h"
 
+// int main() {
+//     char* input = "c(20)+1";
+//     calc(input);
+//     return 0;
+// }
+
 double calc(char* input) {
     double output = 0.0;
     Stack_sign sign_st;

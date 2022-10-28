@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define STACK_MAX_SIZE 500
+#define STACK_MAX_SIZE 255
 #define STACK_OVERFLOW -100
 #define STACK_UNDERFLOW -101
 

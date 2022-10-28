@@ -42,7 +42,7 @@ void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
       sign_cur == 'a' || sign_cur == 'i' || sign_cur == 'n' ||
       sign_cur == 'q' || sign_cur == 'l' || sign_cur == 'o') {
     push_sign(sign_st, sign_cur);
-    push_sign(sign_st, '(');
+    // push_sign(sign_st, '(');
   }
   if (sign_cur == '(') {
     push_sign(sign_st, sign_cur);

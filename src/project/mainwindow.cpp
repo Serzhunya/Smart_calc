@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
+#include <locale.h>
 
 Stack_sign sign_st;
 QString check_dot;
@@ -10,6 +11,8 @@ QString qtext;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
+  setlocale(LC_ALL, "");
+  setlocale(LC_ALL, "en_US.UTF-8");
   ui->setupUi(this);
   ui->widget->addGraph();
   ui->spinBox_min->setMinimum(-1000000);
@@ -75,29 +78,40 @@ void MainWindow::digits_numbers() {
 
 void MainWindow::on_pushButton_dot_clicked() {
   QPushButton *button = (QPushButton *)(sender());
-  if (!check_dot.contains(',')) {
-    ui->label->setText(ui->label->text() + ",");
-    input_real = input_real + ",";
+  if (!check_dot.contains('.')) {
+    ui->label->setText(ui->label->text() + ".");
+    input_real = input_real + ".";
   }
   check_dot += button->text();
 }
 
 void MainWindow::math_operations() {
   check_dot = 0;
+  bool aboba = true;
   QPushButton *button = (QPushButton *)
       sender();
-  if (ui->label->text() != "0") {
-    ui->label->setText(ui->label->text() + button->text());
-  } else {
-    ui->label->setText(button->text());
+  QString input_check = ui->label->text();
+  QString array[] = {"+", "-", "/", "*", "mod"};
+  for(int i = 0; i < 5; i++) {
+    if(input_check.endsWith(array[i])) {
+      aboba = false;
+      break;
+    }
   }
-  if (button->text() == "mod") {
-    input_real = input_real + "m";
-  } else {
+  if(aboba) {
     if (ui->label->text() != "0") {
-      input_real = input_real + button->text();
+      ui->label->setText(ui->label->text() + button->text());
     } else {
-      input_real = button->text();
+      ui->label->setText(button->text());
+    }
+    if (button->text() == "mod") {
+      input_real = input_real + "m";
+    } else {
+      if (ui->label->text() != "0") {
+        input_real = input_real + button->text();
+      } else {
+        input_real = button->text();
+      }
     }
   }
 }
@@ -117,13 +131,13 @@ void MainWindow::on_pushButton_clear_clicked() {
 }
 
 void MainWindow::on_pushButton_result_clicked() {
-    QString text;
-    if (X_output != "q") {
-        change_X();
-        text = qtext;
-    } else {
-        text = input_real;
-    }
+  QString text;
+  if (X_output != "q") { // если нажата X
+      change_X();
+      text = qtext;
+  } else {
+      text = input_real; // если нету X
+  }
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
   int code = validation(input_str);
@@ -284,7 +298,6 @@ void MainWindow:: change_X() {
     ui->spinBox_x->setMinimum(-1000000);
     ui->spinBox_x->setMaximum(1000000);
     QString X = QString::number(ui->spinBox_x->value());
-//    QString remove = X;
     qtext = input_real + X;
 
 }
@@ -293,6 +306,9 @@ void MainWindow::on_pushButton_backspace_clicked()
 {
     ui->label->setText(ui->label->text().chopped(1));
     input_real = input_real.chopped(1);
+    if (ui->label->text().endsWith("X")) {
+      X_output = "q";
+    }
     qtext = qtext.chopped(1);
 }
 
