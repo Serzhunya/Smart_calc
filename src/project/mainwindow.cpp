@@ -3,12 +3,6 @@
 #include "./ui_mainwindow.h"
 #include <locale.h>
 
-Stack_sign sign_st;
-QString check_dot;
-QString input_real;
-QString X_output = "q";
-QString qtext;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   setlocale(LC_ALL, "");
@@ -123,7 +117,7 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->spinBox_min->setValue(0);
   ui->spinBox_max->setValue(0);
   input_real = "0";
-  X_output = "q";
+  isClickedX = false;
   ui->widget->graph(0)->data()->clear();
   check_dot = 0;
   x.clear();
@@ -132,7 +126,7 @@ void MainWindow::on_pushButton_clear_clicked() {
 
 void MainWindow::on_pushButton_result_clicked() {
   QString text;
-  if (X_output != "q") { // если нажата X
+  if (isClickedX) { // если нажата X
       change_X();
       text = qtext;
   } else {
@@ -245,21 +239,23 @@ void MainWindow::create_graph() {
   double output;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();
-  // int code = validation(graph_str);
-  // if (!code) {
-  //   output = create_graphic(graph_str, max, min);
-  // } else {
-  //   ui->label->setText("Error");
-  // }
-  for (X = min; X <= max; X += 0.1) {
-    x.push_back(X);
-    output = create_graphic(graph_str, sign_st, X);
-    y.push_back(output);
+  int code = validation(graph_str);
+  if (code == 1) {
+    ui->label_2->setText("Error");
+  } else {
+    for (X = min; X <= max; X += 0.1) {
+      x.push_back(X);
+      output = create_graphic(graph_str, sign_st, X);
+      y.push_back(output);
+    }
+    ui->widget->graph(0)->addData(x, y);
+    ui->widget->xAxis->setRange(min, max);
+    ui->widget->yAxis->setRange(min, max);
+    ui->widget->replot();
+    if(max || min) {
+      ui->label_2->setText("Graph is build");
+    }
   }
-  ui->widget->graph(0)->addData(x, y);
-  ui->widget->xAxis->setRange(min, max);
-  ui->widget->yAxis->setRange(min, max);
-  ui->widget->replot();
 }
 
 void MainWindow::on_pushButton_funx_clicked()
@@ -290,7 +286,7 @@ void MainWindow::on_pushButton_X_clicked()
     } else {
       new_label = "X";
     }
-    X_output = "m";
+    isClickedX = true;
     ui->label->setText(new_label);
 }
 
@@ -307,7 +303,7 @@ void MainWindow::on_pushButton_backspace_clicked()
     ui->label->setText(ui->label->text().chopped(1));
     input_real = input_real.chopped(1);
     if (ui->label->text().endsWith("X")) {
-      X_output = "q";
+      isClickedX = false;
     }
     qtext = qtext.chopped(1);
 }

@@ -23,7 +23,10 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow *ui;
-  double xBegin, xEnd, h, X;
+  double X;
+  Stack_sign sign_st;
+  QString check_dot, input_real, qtext;
+  bool isClickedX = false;
   QVector<double> x, y;
  private slots:
   void digits_numbers();
