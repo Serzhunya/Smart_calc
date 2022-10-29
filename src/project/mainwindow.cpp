@@ -126,12 +126,10 @@ void MainWindow::on_pushButton_clear_clicked() {
 
 void MainWindow::on_pushButton_result_clicked() {
   QString text;
-  if (isClickedX) { // если нажата X
-      change_X();
-      text = qtext;
-  } else {
-      text = input_real; // если нету X
+  if (isClickedX) {
+    change_X();
   }
+  text = input_real;
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
   int code = validation(input_str);
@@ -212,7 +210,7 @@ void MainWindow::trigeometry_operations() {
   }
   if (button->text() == "ln") {
     if (ui->label->text() != "0") {
-      input_real = input_real + + "l(";
+      input_real = input_real + "l(";
     } else {
       input_real = "l(";
     }
@@ -236,7 +234,7 @@ void MainWindow::create_graph() {
   QString text = input_real;
   QByteArray graph_bit = text.toLocal8Bit();
   char *graph_str = graph_bit.data();
-  double output;
+  double output, X;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();
   int code = validation(graph_str);
@@ -294,17 +292,13 @@ void MainWindow:: change_X() {
     ui->spinBox_x->setMinimum(-1000000);
     ui->spinBox_x->setMaximum(1000000);
     QString X = QString::number(ui->spinBox_x->value());
-    qtext = input_real + X;
-
+    input_real = input_real + X;
 }
 
-void MainWindow::on_pushButton_backspace_clicked()
-{
-    ui->label->setText(ui->label->text().chopped(1));
-    input_real = input_real.chopped(1);
-    if (ui->label->text().endsWith("X")) {
-      isClickedX = false;
-    }
-    qtext = qtext.chopped(1);
+void MainWindow::on_pushButton_backspace_clicked() {
+  if (ui->label->text().endsWith("X")) {
+    isClickedX = false;
+  }
+  ui->label->setText(ui->label->text().chopped(1));
+  input_real = input_real.chopped(1);
 }
-

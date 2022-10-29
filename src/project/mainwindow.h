@@ -23,7 +23,6 @@ class MainWindow : public QMainWindow {
 
  private:
   Ui::MainWindow *ui;
-  double X;
   Stack_sign sign_st;
   QString check_dot, input_real, qtext;
   bool isClickedX = false;
