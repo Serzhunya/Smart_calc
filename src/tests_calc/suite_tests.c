@@ -73,8 +73,8 @@ END_TEST
 
 START_TEST(test_8) {
     char *str = malloc(50 * sizeof(char));
-    strcpy(str, "t(3)");
-    double true_res = tan(3);
+    strcpy(str, "t(3)+33");
+    double true_res = tan(3)+33;
     double output = calc(str);
     ck_assert_double_eq(fabs(output - true_res), 0.0);
     free(str);
@@ -231,6 +231,46 @@ START_TEST(test_23) {
 }
 END_TEST
 
+// START_TEST(test_24) {
+//     char *str = malloc(50 * sizeof(char));
+//     strcpy(str, "(1+2)*4*cos(x*7-2)+sin(2*x)");
+//     double output = calc(str);
+//     double true_res = (1+2)*4*cos(x*7-2)+sin(2*x);
+//     ck_assert_double_eq(fabs(output - true_res), 0.0);
+//     free(str);
+// }
+// END_TEST
+
+// START_TEST(test_25) {
+//     char *str = malloc(50 * sizeof(char));
+//     strcpy(str, "-sqrt(x^log(5-x))+ln(55/(2+x))");
+//     double output = calc(str);
+//     double true_res = 17;
+//     ck_assert_double_eq(fabs(output - true_res), 0.0);
+//     free(str);
+// }
+// END_TEST
+
+// START_TEST(test_26) {
+//     char *str = malloc(50 * sizeof(char));
+//     strcpy(str, "100.235+x-(x+10)");
+//     double output = calc(str);
+//     double true_res = 17;
+//     ck_assert_double_eq(fabs(output - true_res), 0.0);
+//     free(str);
+// }
+// END_TEST
+
+// START_TEST(test_27) {
+//     char *str = malloc(50 * sizeof(char));
+//     strcpy(str, "-(3)*(-x-(7*(-(-(-(--7))))))");
+//     double output = calc(str);
+//     double true_res = 17;
+//     ck_assert_double_eq(fabs(output - true_res), 0.0);
+//     free(str);
+// }
+// END_TEST
+
 Suite *suite_s21_calc_notation(void) {
     Suite *s = suite_create("s21_calc");
     TCase *tc = tcase_create("s21_calc");
@@ -258,6 +298,10 @@ Suite *suite_s21_calc_notation(void) {
     tcase_add_test(tc, test_21);
     tcase_add_test(tc, test_22);
     tcase_add_test(tc, test_23);
+    // tcase_add_test(tc, test_24);
+    // tcase_add_test(tc, test_25);
+    // tcase_add_test(tc, test_26);
+    tcase_add_test(tc, test_27);
     suite_add_tcase(s, tc);
     return s;
 }

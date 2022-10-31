@@ -24,8 +24,10 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   Stack_sign sign_st;
-  QString check_dot, input_real, qtext;
+  QString check_dot, input_real, value_X;
   bool isClickedX = false;
+  std::string input_real_string;
+  double X;
   QVector<double> x, y;
  private slots:
   void digits_numbers();
@@ -39,7 +41,7 @@ class MainWindow : public QMainWindow {
   void on_pushButton_funx_clicked();
   void on_pushButton_build_graph_clicked();
   void on_pushButton_X_clicked();
-  void change_X();
+  std::string change_X(std::string X);
   void on_pushButton_backspace_clicked();
 };
 #endif  // SRC_PROJECT_MAINWINDOW_H_

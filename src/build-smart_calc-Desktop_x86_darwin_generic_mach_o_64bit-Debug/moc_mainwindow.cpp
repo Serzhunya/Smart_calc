@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[30];
-    char stringdata0[303];
+    const uint offsetsAndSize[34];
+    char stringdata0[317];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -43,7 +43,9 @@ QT_MOC_LITERAL(177, 26), // "on_pushButton_funx_clicked"
 QT_MOC_LITERAL(204, 33), // "on_pushButton_build_graph_cli..."
 QT_MOC_LITERAL(238, 23), // "on_pushButton_X_clicked"
 QT_MOC_LITERAL(262, 8), // "change_X"
-QT_MOC_LITERAL(271, 31) // "on_pushButton_backspace_clicked"
+QT_MOC_LITERAL(271, 11), // "std::string"
+QT_MOC_LITERAL(283, 1), // "X"
+QT_MOC_LITERAL(285, 31) // "on_pushButton_backspace_clicked"
 
     },
     "MainWindow\0digits_numbers\0\0"
@@ -54,7 +56,7 @@ QT_MOC_LITERAL(271, 31) // "on_pushButton_backspace_clicked"
     "create_graph\0on_pushButton_funx_clicked\0"
     "on_pushButton_build_graph_clicked\0"
     "on_pushButton_X_clicked\0change_X\0"
-    "on_pushButton_backspace_clicked"
+    "std::string\0X\0on_pushButton_backspace_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,8 +85,8 @@ static const uint qt_meta_data_MainWindow[] = {
       10,    0,  100,    2, 0x08,    9 /* Private */,
       11,    0,  101,    2, 0x08,   10 /* Private */,
       12,    0,  102,    2, 0x08,   11 /* Private */,
-      13,    0,  103,    2, 0x08,   12 /* Private */,
-      14,    0,  104,    2, 0x08,   13 /* Private */,
+      13,    1,  103,    2, 0x08,   12 /* Private */,
+      16,    0,  106,    2, 0x08,   14 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -98,7 +100,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    0x80000000 | 14, 0x80000000 | 14,   15,
     QMetaType::Void,
 
        0        // eod
@@ -121,12 +123,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->on_pushButton_funx_clicked(); break;
         case 9: _t->on_pushButton_build_graph_clicked(); break;
         case 10: _t->on_pushButton_X_clicked(); break;
-        case 11: _t->change_X(); break;
+        case 11: { std::string _r = _t->change_X((*reinterpret_cast< std::string(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< std::string*>(_a[0]) = std::move(_r); }  break;
         case 12: _t->on_pushButton_backspace_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject MainWindow::staticMetaObject = { {
@@ -137,7 +139,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 , QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<std::string, std::false_type>, QtPrivate::TypeAndForceComplete<std::string, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,

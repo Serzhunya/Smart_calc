@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 
-#include "./ui_mainwindow.h"
 #include <locale.h>
+
+#include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -13,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
   ui->spinBox_max->setMinimum(-1000000);
   ui->spinBox_min->setMaximum(1000000);
   ui->spinBox_max->setMaximum(1000000);
+  ui->spinBox_x->setMinimum(-1000000);
+  ui->spinBox_x->setMaximum(1000000);
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(digits_numbers()));
@@ -82,17 +85,16 @@ void MainWindow::on_pushButton_dot_clicked() {
 void MainWindow::math_operations() {
   check_dot = 0;
   bool aboba = true;
-  QPushButton *button = (QPushButton *)
-      sender();
+  QPushButton *button = (QPushButton *)sender();
   QString input_check = ui->label->text();
   QString array[] = {"+", "-", "/", "*", "mod"};
-  for(int i = 0; i < 5; i++) {
-    if(input_check.endsWith(array[i])) {
+  for (int i = 0; i < 5; i++) {
+    if (input_check.endsWith(array[i])) {
       aboba = false;
       break;
     }
   }
-  if(aboba) {
+  if (aboba) {
     if (ui->label->text() != "0") {
       ui->label->setText(ui->label->text() + button->text());
     } else {
@@ -126,13 +128,16 @@ void MainWindow::on_pushButton_clear_clicked() {
 
 void MainWindow::on_pushButton_result_clicked() {
   QString text;
-  if (isClickedX) {
-    change_X();
-  }
   text = input_real;
+  if (isClickedX) {
+    std::string X = std::to_string(ui->spinBox_x->value());
+    std::string input_real_string = change_X(X);
+    text = QString::fromStdString(input_real_string);
+  }
   QByteArray str_bit = text.toLocal8Bit();
   char *input_str = str_bit.data();
   int code = validation(input_str);
+
   if (code) {
     ui->label_2->setText("Error");
   } else {
@@ -145,7 +150,6 @@ void MainWindow::on_pushButton_result_clicked() {
 void MainWindow::braces_buttons() {
   check_dot = 0;
   QPushButton *button = (QPushButton *)sender();
-  button->setChecked(true);
   if (ui->label->text() != "0") {
     ui->label->setText(ui->label->text() + button->text());
     input_real = input_real + button->text();
@@ -182,9 +186,9 @@ void MainWindow::trigeometry_operations() {
   }
   if (button->text() == "acos") {
     if (ui->label->text() != "0") {
-      input_real = input_real +"a(";
+      input_real = input_real + "a(";
     } else {
-      input_real ="a(";
+      input_real = "a(";
     }
   }
   if (button->text() == "asin") {
@@ -234,7 +238,7 @@ void MainWindow::create_graph() {
   QString text = input_real;
   QByteArray graph_bit = text.toLocal8Bit();
   char *graph_str = graph_bit.data();
-  double output, X;
+  double output;
   int min = ui->spinBox_min->value();
   int max = ui->spinBox_max->value();
   int code = validation(graph_str);
@@ -246,53 +250,57 @@ void MainWindow::create_graph() {
       output = create_graphic(graph_str, sign_st, X);
       y.push_back(output);
     }
+
     ui->widget->graph(0)->addData(x, y);
     ui->widget->xAxis->setRange(min, max);
     ui->widget->yAxis->setRange(min, max);
     ui->widget->replot();
-    if(max || min) {
+    if (max || min) {
       ui->label_2->setText("Graph is build");
     }
   }
 }
 
-void MainWindow::on_pushButton_funx_clicked()
-{
-    QPushButton *button = (QPushButton *)(sender());
-    QString new_label;
-    if (ui->label->text() != "0") {
-      new_label = ui->label->text() + button->text();
-      input_real = input_real + button->text();
-    } else {
-      new_label = button->text();
-      input_real = button->text();
-    }
-    ui->label->setText(new_label);
+void MainWindow::on_pushButton_funx_clicked() {
+  QPushButton *button = (QPushButton *)(sender());
+  QString new_label;
+  if (ui->label->text() != "0") {
+    new_label = ui->label->text() + button->text();
+    input_real = input_real + button->text();
+  } else {
+    new_label = button->text();
+    input_real = button->text();
+  }
+  ui->label->setText(new_label);
 }
 
-void MainWindow::on_pushButton_build_graph_clicked()
-{
-    create_graph();
+void MainWindow::on_pushButton_build_graph_clicked() { create_graph(); }
+
+void MainWindow::on_pushButton_X_clicked() {
+  QString new_label;
+  if (ui->label->text() != "0") {
+    new_label = ui->label->text() + "X";
+    input_real = input_real + "X";
+  } else {
+    new_label = "X";
+    input_real = "X";
+  }
+  isClickedX = true;
+  ui->label->setText(new_label);
 }
 
+std::string MainWindow::change_X(std::string X) {
+  std::string input_real_string = "";
+  input_real_string = input_real.toStdString();
+  size_t pos = 0;
+  for (;;) {
+    pos = input_real_string.find("X", pos);
+    if (pos == std::string::npos) break;
+    input_real_string.replace(pos, 1, X);
+    pos += X.size();
+  }
 
-void MainWindow::on_pushButton_X_clicked()
-{
-    QString new_label;
-    if (ui->label->text() != "0") {
-      new_label = ui->label->text() + "X";
-    } else {
-      new_label = "X";
-    }
-    isClickedX = true;
-    ui->label->setText(new_label);
-}
-
-void MainWindow:: change_X() {
-    ui->spinBox_x->setMinimum(-1000000);
-    ui->spinBox_x->setMaximum(1000000);
-    QString X = QString::number(ui->spinBox_x->value());
-    input_real = input_real + X;
+  return input_real_string;
 }
 
 void MainWindow::on_pushButton_backspace_clicked() {
