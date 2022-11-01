@@ -127,8 +127,7 @@ void MainWindow::on_pushButton_clear_clicked() {
 }
 
 void MainWindow::on_pushButton_result_clicked() {
-  QString text;
-  text = input_real;
+  QString text = input_real;
   if (isClickedX) {
     std::string X = std::to_string(ui->spinBox_x->value());
     std::string input_real_string = change_X(X);
@@ -236,6 +235,11 @@ void MainWindow::trigeometry_operations() {
 void MainWindow::create_graph() {
   ui->widget->graph(0)->data()->clear();
   QString text = input_real;
+  if (isClickedX) {
+    std::string X = std::to_string(ui->spinBox_x->value());
+    std::string input_real_string = change_X(X);
+    text = QString::fromStdString(input_real_string);
+  }
   QByteArray graph_bit = text.toLocal8Bit();
   char *graph_str = graph_bit.data();
   double output;
@@ -245,15 +249,18 @@ void MainWindow::create_graph() {
   if (code == 1) {
     ui->label_2->setText("Error");
   } else {
-    for (X = min; X <= max; X += 0.1) {
+    for (X = min; X <= max; X += 0.01) {
       x.push_back(X);
       output = create_graphic(graph_str, sign_st, X);
       y.push_back(output);
     }
-
-    ui->widget->graph(0)->addData(x, y);
     ui->widget->xAxis->setRange(min, max);
     ui->widget->yAxis->setRange(min, max);
+    ui->widget->graph(0)->setPen(QColor(Qt::black));
+    ui->widget->graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui->widget->graph(0)->setScatterStyle(
+        QCPScatterStyle(QCPScatterStyle::ssDisc, 1));
+    ui->widget->graph(0)->addData(x, y);
     ui->widget->replot();
     if (max || min) {
       ui->label_2->setText("Graph is build");

@@ -27,8 +27,13 @@ int validation(char *input_str) {
     if (strchr(input_str, 41)) {
       count_closed_braces++;
     }
-    if (count_opened_braces != count_closed_braces) {
-      code = 1;
+  }
+  if (count_opened_braces != count_closed_braces) {
+    code = 1;
+  }
+  for (int i = strlen(input_str); i >= 0; i--) {
+    if (strlen(input_str) == 0) {
+      break;
     }
     int index_1 = strcspn(input_str, "+-*/^");
     int index_2 = strcspn(input_str, "0123456789");
@@ -40,9 +45,7 @@ int validation(char *input_str) {
     char char_valid_3 = input_str[index_3 + 1];
     char char_valid_4 = input_str[index_4 + 1];
     char char_valid_5 = input_str[index_5 + 1];
-    if (char_valid_1 == '-' || char_valid_1 == '+' || char_valid_1 == '*' ||
-        char_valid_1 == '/' || char_valid_1 == '^' || char_valid_1 == '.' ||
-        char_valid_1 == ')') {
+    if (char_valid_1 == '^' || char_valid_1 == '.' || char_valid_1 == ')') {
       code = 1;
     }
     if (char_valid_2 == 'c' || char_valid_2 == 's' || char_valid_2 == 't' ||
@@ -68,7 +71,7 @@ int validation(char *input_str) {
       code = 1;
     }
     input_str = input_str + index_1 + 1;
-    // input_str++;
   }
+
   return code;
 }

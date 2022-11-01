@@ -1,8 +1,8 @@
 #include "tests.h"
 
 int main(void) {
-    run_tests();
-    return 0;
+  run_tests();
+  return 0;
 }
 
 void run_testcase(Suite *testcase) {
@@ -15,8 +15,7 @@ void run_testcase(Suite *testcase) {
 }
 
 void run_tests(void) {
-  Suite *list_cases[] = {suite_s21_calc_notation(),
-                         NULL};
+  Suite *list_cases[] = {suite_s21_calc_notation(), NULL};
 
   for (Suite **current_testcase = list_cases; *current_testcase != NULL;
        current_testcase++) {

@@ -3,12 +3,6 @@ GCOV = -fprofile-arcs -ftest-coverage
 C_TESTS = tests_calc/suite_tests.c tests_calc/test_runner.c
 C_FILES = project/create_stack_digit.c project/create_stack_sign.c project/calc.c project/support_func.c project/validation.c
 #ASAN = -g -O0 -fanalyzer -fsanitize=address #-fsanitize=undefined
-SUITE_CASES_O = obj_dir/suite_*.o
-SUITE_CASES_C = tests_calc/suite_*.c
-FLAG_COV = --coverage 
-S21_CALC_C = project/*.c 
-S21_CALC_O = obj_dir/*.o
-PACKAGE = project
 VERSION = `date +"%Y.%m.%d"`
 ARCHIVE = $(PACKAGE)-$(VERSION)
 
@@ -58,13 +52,12 @@ open_report:
 	open obj_dir/report.html
 
 clean:
-	rm -rf *.css *.info *.out  *.html *.gcno *.gcda *.o *.a *.tar CPPLINT.cfg
+	rm -rf *.css *.info *.out  *.html *.gcno *.gcda *.o *.a *.tar .clang-format
 	rm -rf project/*.o project/*.out project/smart_calc.pro.user tests_calc/tests.out
 	rm -rf obj_dir docs
 
 check:
 	cppcheck project/*.h project/*.c tests_calc/*.h tests_calc/*.c
-	cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
-	python3 ../materials/linters/cpplint.py --extension=c project/s21_calc.h project/mainwindow.h  project/*.c tests_calc/*.c tests_calc/*.h
-#	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt obj_dir/./tests
-	CK_FORK=no leaks --atExit -- obj_dir/./tests.out
+	cp ../materials/linters/.clang-format .clang-format
+	clang-format -n project/s21_calc.h project/mainwindow.h  project/*.c tests_calc/*.c tests_calc/*.h
+	CK_FORK=no leaks --atExit -- tests_calc/./tests.out
