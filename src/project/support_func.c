@@ -42,7 +42,6 @@ void distribution_lexem(char* lexem, Stack_sign* sign_st, char* pol_notation) {
       sign_cur == 'a' || sign_cur == 'i' || sign_cur == 'n' ||
       sign_cur == 'q' || sign_cur == 'l' || sign_cur == 'o') {
     push_sign(sign_st, sign_cur);
-    // push_sign(sign_st, '(');
   }
   if (sign_cur == '(') {
     push_sign(sign_st, sign_cur);
@@ -163,10 +162,10 @@ double math_unary(double num1, char sign) {
       result = sqrt(num1);
       break;
     case 'l':
-      result = log10(num1);
+      result = log(num1);
       break;
     case 'o':
-      result = log(num1);
+      result = log10(num1);
       break;
   }
   return result;

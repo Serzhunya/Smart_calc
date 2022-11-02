@@ -2,11 +2,10 @@ CC = gcc -Wall -Werror -Wextra
 GCOV = -fprofile-arcs -ftest-coverage
 C_TESTS = tests_calc/suite_tests.c tests_calc/test_runner.c
 C_FILES = project/create_stack_digit.c project/create_stack_sign.c project/calc.c project/support_func.c project/validation.c
-#ASAN = -g -O0 -fanalyzer -fsanitize=address #-fsanitize=undefined
 VERSION = `date +"%Y.%m.%d"`
-ARCHIVE = $(PACKAGE)-$(VERSION)
+ARCHIVE = smart_calc-$(VERSION)
 
-all: install run
+all: install
 
 install:
 	mkdir -p obj_dir
@@ -16,7 +15,7 @@ install:
 	rm -rf project/smart_calc project/smart_calc.app
 
 run:
-	open -Fn smart_calc/smart_calc*
+	open -Fn smart_calc/smart_calc.app
 
 uninstall: clean
 	cd project && $(MAKE) clean
@@ -34,7 +33,7 @@ dvi:
 dist:
 	@tar -cf $(ARCHIVE).tar $(C_FILES) project/*.h Makefile
 
-test:
+tests:
 	$(CC) -c $(C_TESTS)
 	@mv suite_*.o obj_dir
 	$(CC) $(GCOV) -o tests_calc/tests.out $(C_TESTS) $(C_FILES) -lcheck
@@ -60,4 +59,4 @@ check:
 	cppcheck project/*.h project/*.c tests_calc/*.h tests_calc/*.c
 	cp ../materials/linters/.clang-format .clang-format
 	clang-format -n project/s21_calc.h project/mainwindow.h  project/*.c tests_calc/*.c tests_calc/*.h
-	CK_FORK=no leaks --atExit -- tests_calc/./tests.out
+	CK_FORK=no leaks --atExit -- obj_dir/./tests.out

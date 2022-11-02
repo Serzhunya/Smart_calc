@@ -17,7 +17,7 @@ int validation(char *input_str) {
       input_str[strlen(input_str) - 1] == '-') {
     code = 1;
   }
-  for (int i = 0; i < strlen(input_str); i++) {
+  for (size_t i = 0; i < strlen(input_str); i++) {
     if (input_str[i] == '(') {
       count_opened_braces++;
     }

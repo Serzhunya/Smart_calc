@@ -143,7 +143,7 @@ void MainWindow::on_pushButton_result_clicked() {
     ui->label_2->setText("Error");
   } else {
     double output = calc(input_str);
-    QString str_output = QString::number(output);
+    QString str_output = QString::number(output, 'g', 10);
     ui->label_2->setText(str_output);
   }
 }

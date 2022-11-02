@@ -7,7 +7,7 @@ START_TEST(test_1) {
   strcpy(str, "12.2345+(-235)");
   double output = calc(str);
   double true_res = -222.765500;
-  ck_assert_double_eq(output, true_res);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -17,7 +17,7 @@ START_TEST(test_2) {
   strcpy(str, "12.3-2");
   double true_res = 12.3 - 2;
   double output = calc(str);
-  ck_assert_double_eq(output, true_res);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -54,8 +54,8 @@ END_TEST
 
 START_TEST(test_6) {
   char *str = malloc(50 * sizeof(char));
-  strcpy(str, "s(10)");
-  int true_res = sin(10);
+  strcpy(str, "s(10)+c(1)");
+  int true_res = sin(10) + cos(1);
   double output = calc(str);
   ck_assert_int_eq(output, true_res);
   free(str);
@@ -67,7 +67,7 @@ START_TEST(test_7) {
   strcpy(str, "c(3)");
   double true_res = cos(3);
   double output = calc(str);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -77,7 +77,7 @@ START_TEST(test_8) {
   strcpy(str, "t(3)+33");
   double true_res = tan(3) + 33;
   double output = calc(str);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -87,7 +87,7 @@ START_TEST(test_9) {
   strcpy(str, "a(1)");
   double true_res = acos(1);
   double output = calc(str);
-  ck_assert_double_eq(output, true_res);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -97,7 +97,7 @@ START_TEST(test_10) {
   strcpy(str, "i(1)");
   double true_res = asin(1);
   double output = calc(str);
-  ck_assert_double_eq(output, true_res);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -107,7 +107,7 @@ START_TEST(test_11) {
   strcpy(str, "n(3)");
   double true_res = atan(3);
   double output = calc(str);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -117,7 +117,7 @@ START_TEST(test_12) {
   strcpy(str, "q(9)+c(20)");
   double true_res = sqrt(9) + cos(20);
   double output = calc(str);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -126,8 +126,8 @@ START_TEST(test_13) {
   char *str = malloc(50 * sizeof(char));
   strcpy(str, "l(10)");
   double output = calc(str);
-  double true_res = log10(10);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  double true_res = log(10);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -136,8 +136,8 @@ START_TEST(test_14) {
   char *str = malloc(50 * sizeof(char));
   strcpy(str, "o(10)");
   double output = calc(str);
-  double true_res = log(10);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  double true_res = log10(10);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -147,7 +147,7 @@ START_TEST(test_15) {
   strcpy(str, "t(3)");
   double output = calc(str);
   double true_res = tan(3);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -157,7 +157,7 @@ START_TEST(test_16) {
   strcpy(str, "n(3.3)");
   double true_res = atan(3.3);
   double output = calc(str);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -167,7 +167,7 @@ START_TEST(test_17) {
   strcpy(str, "5 * 2.2 / 2 - 1");
   double output = calc(str);
   double true_res = 5 * 2.2 / 2 - 1;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -177,7 +177,7 @@ START_TEST(test_18) {
   strcpy(str, "2 ^ 10");
   double output = calc(str);
   double true_res = pow(2, 10);
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -187,7 +187,7 @@ START_TEST(test_19) {
   strcpy(str, "36m5");
   double output = calc(str);
   double true_res = 1;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -197,7 +197,7 @@ START_TEST(test_20) {
   strcpy(str, "36m5 + (9*4) / 2 + 3 -10");
   double output = calc(str);
   double true_res = 1 + (9 * 4) / 2 + 3 - 10;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -207,7 +207,7 @@ START_TEST(test_21) {
   strcpy(str, "c(20) + 1");
   double output = calc(str);
   double true_res = cos(20) + 1;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -217,7 +217,7 @@ START_TEST(test_22) {
   strcpy(str, "2^3^3");
   double output = calc(str);
   double true_res = 134217728;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -227,7 +227,37 @@ START_TEST(test_23) {
   strcpy(str, "2^3+3/1+(3*2)");
   double output = calc(str);
   double true_res = 17;
-  ck_assert_double_eq(fabs(output - true_res), 0.0);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
+  free(str);
+}
+END_TEST
+
+START_TEST(test_24) {
+  char *str = malloc(50 * sizeof(char));
+  strcpy(str, "(((6*6)+c(30)-10))");
+  double output = calc(str);
+  double true_res = (((6 * 6) + cos(30) - 10));
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
+  free(str);
+}
+END_TEST
+
+START_TEST(test_25) {
+  char *str = malloc(50 * sizeof(char));
+  strcpy(str, "c(s(t(5)))");
+  double output = calc(str);
+  double true_res = cos(sin(tan(5)));
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
+  free(str);
+}
+END_TEST
+
+START_TEST(test_26) {
+  char *str = malloc(50 * sizeof(char));
+  strcpy(str, "c(s(t(5)))+s(10)");
+  double output = calc(str);
+  double true_res = cos(sin(tan(5))) + sin(10);
+  ck_assert_ldouble_eq_tol(true_res, output, 1e-06);
   free(str);
 }
 END_TEST
@@ -259,6 +289,9 @@ Suite *suite_s21_calc_notation(void) {
   tcase_add_test(tc, test_21);
   tcase_add_test(tc, test_22);
   tcase_add_test(tc, test_23);
+  tcase_add_test(tc, test_24);
+  tcase_add_test(tc, test_25);
+  tcase_add_test(tc, test_26);
   suite_add_tcase(s, tc);
   return s;
 }
