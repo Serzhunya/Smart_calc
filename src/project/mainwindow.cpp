@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
   ui->spinBox_max->setMaximum(1000000);
   ui->spinBox_x->setMinimum(-1000000);
   ui->spinBox_x->setMaximum(1000000);
+  ui->spinBox_min->setValue(-10);
+  ui->spinBox_max->setValue(10);
   connect(ui->pushButton_0, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_1, SIGNAL(clicked()), this, SLOT(digits_numbers()));
   connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(digits_numbers()));
@@ -84,21 +86,21 @@ void MainWindow::on_pushButton_dot_clicked() {
 
 void MainWindow::math_operations() {
   check_dot = 0;
-  bool aboba = true;
+  bool isNotPressedOperatorLast = true;
   QPushButton *button = (QPushButton *)sender();
   QString input_check = ui->label->text();
   QString array[] = {"+", "-", "/", "*", "mod"};
   for (int i = 0; i < 5; i++) {
     if (input_check.endsWith(array[i])) {
-      aboba = false;
+      isNotPressedOperatorLast = false;
       break;
     }
   }
-  if (aboba) {
+  if (isNotPressedOperatorLast) {
     if (ui->label->text() != "0") {
       ui->label->setText(ui->label->text() + button->text());
     } else {
-      ui->label->setText(button->text());
+      ui->label->setText("0" + button->text());
     }
     if (button->text() == "mod") {
       input_real = input_real + "m";
@@ -116,8 +118,8 @@ void MainWindow::on_pushButton_clear_clicked() {
   ui->label->setText("0");
   ui->label_2->setText("0");
   ui->spinBox_x->setValue(0);
-  ui->spinBox_min->setValue(0);
-  ui->spinBox_max->setValue(0);
+  ui->spinBox_min->setValue(-10);
+  ui->spinBox_max->setValue(10);
   input_real = "0";
   isClickedX = false;
   ui->widget->graph(0)->data()->clear();
@@ -234,6 +236,8 @@ void MainWindow::trigeometry_operations() {
 
 void MainWindow::create_graph() {
   ui->widget->graph(0)->data()->clear();
+  x.clear();
+  y.clear();
   QString text = input_real;
   if (isClickedX) {
     std::string X = std::to_string(ui->spinBox_x->value());
@@ -314,6 +318,33 @@ void MainWindow::on_pushButton_backspace_clicked() {
   if (ui->label->text().endsWith("X")) {
     isClickedX = false;
   }
-  ui->label->setText(ui->label->text().chopped(1));
+  if (ui->label->text().endsWith(".")) {
+    check_dot = "";
+  }
+  bool endsArray3char = false;
+  bool endsArray4char = false;
+  QString array3char[] = {"cos", "sin", "log", "tan", "mod"};
+  QString array4char[] = {"acos", "asin", "atan", "sqrt"};
+  for (int i = 0; i < 4; i++) {
+    if (ui->label->text().endsWith(array4char[i])) {
+      endsArray4char = true;
+      break;
+    }
+  }
+  for (int i = 0; i < 5; i++) {
+    if (ui->label->text().endsWith(array3char[i])) {
+      endsArray3char = true;
+      break;
+    }
+  }
+  if (endsArray4char) {
+    ui->label->setText(ui->label->text().chopped(4));
+  } else if (endsArray3char) {
+    ui->label->setText(ui->label->text().chopped(3));
+  } else if (ui->label->text().endsWith("ln")) {
+    ui->label->setText(ui->label->text().chopped(2));
+  } else {
+    ui->label->setText(ui->label->text().chopped(1));
+  }
   input_real = input_real.chopped(1);
 }

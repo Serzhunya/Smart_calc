@@ -17,14 +17,11 @@ int validation(char *input_str) {
       input_str[strlen(input_str) - 1] == '-') {
     code = 1;
   }
-  for (int i = strlen(input_str); i >= 0; i--) {
-    if (strlen(input_str) == 0) {
-      break;
-    }
-    if (strchr(input_str, 40)) {
+  for (int i = 0; i < strlen(input_str); i++) {
+    if (input_str[i] == '(') {
       count_opened_braces++;
     }
-    if (strchr(input_str, 41)) {
+    if (input_str[i] == ')') {
       count_closed_braces++;
     }
   }

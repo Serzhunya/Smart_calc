@@ -34,7 +34,7 @@ dvi:
 dist:
 	@tar -cf $(ARCHIVE).tar $(C_FILES) project/*.h Makefile
 
-tests:
+test:
 	$(CC) -c $(C_TESTS)
 	@mv suite_*.o obj_dir
 	$(CC) $(GCOV) -o tests_calc/tests.out $(C_TESTS) $(C_FILES) -lcheck
